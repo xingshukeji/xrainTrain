@@ -7,7 +7,7 @@ title: 资料总索引与适用版本
 
 ## 适用范围与真实验证
 
-本版于 2026-10-25 核对 skills-hub 提交 `f6e10f6` 的 9 个技能入口、21 份业务专题及 HTTP 样例。Workforce 消费者示例固定于 `e7f17fc`。目标环境后续升级时，应以实际接口、公开类型和返回核对差异。
+本版于 2026-10-25 核对 skills-hub 提交 `f6e10f6` 的 9 个技能入口、21 份业务专题及 HTTP 样例；本轮新增 CLI 命令以 `f4c4861` 为准。Workforce 字段消费者示例固定于 `e7f17fc`，Task 读取实操使用包含 `c00c3b2` 修复的应用构建。目标环境后续升级时，应以实际接口、公开类型和返回核对差异。
 
 | 已核验的内容 | 本次结果 |
 |---|---|
@@ -22,8 +22,9 @@ title: 资料总索引与适用版本
 | 只读集成 | 按实际 catalog 调用只读测试接口；外层 200、远端 200、业务内容符合预期；未发送消息 |
 | 时间 | 核对当地重复时刻的两个候选及 25 小时业务日；Routine 调度预览成功 |
 | SDK | 通过当前应用所安装 SDK 的公开导出读取 context、describe、自己的便签及 queryBatch，核对实际返回形状 |
-| CLI 数据与初始化 | 使用正常原生登录 Bearer 运行 describe、创建、回读与查询；复用固定维护者，重复关联原有 18 项教学权限后，人物与权限保持一致 |
+| CLI 数据与初始化 | 使用正常原生登录 Bearer 运行 describe、创建、回读与查询；新增权限目录、权限集创建／复用和 Host 成员查询／复用已实跑。合成空权限集验证后软删除，原人物、成员与 18 项教学权限保持一致；新成员创建分支另有定向合同测试 |
 | Task 字段消费者 | 核对指定提交的元数据、服务映射、路由及页面；实际创建并重新打开本人的合成 Task，ID 与内容一致 |
+| AI 工具读取 Task | 原普通人物从 Task 入口实际调用 workforce_check_context，取得同一任务的内容与 open 状态；该轮正常结束，更新工具调用为 0，任务前后快照一致。本人单读 200，无业务关系的后台记录 Owner 单读 403；未新增助手、身份或权限 |
 | 网页与样例 | 全部 23 页、8 道题、7 个分步图解；检查下载字节与文件名、搜索、深层刷新和本地记录 |
 
 以下项目没有达到完整实操通过条件，继续保留其真实边界：
@@ -32,10 +33,11 @@ title: 资料总索引与适用版本
 |---|---|
 | CLI 浏览器登录与应用包命令 | 已核对正式统一登录入口；目标缺少已关联且加入租户的可用统一身份，未完成浏览器登录后的应用包 CLI 操作；通用数据命令已按上表单独实跑 |
 | Routine 实际运行 | 未配置执行成员；预览和拒绝路径已核对，没有活动运行，保持原配置 |
-| 附件上传、关联与再打开 | 应用未配置文件服务凭据；实际上传返回 503，消息未发送，没有 fileId |
-| AI 工具读取 Task | 当前人物没有可用助手；已完成合成 Task 页面回读，未执行 AI 工具 |
-| 个人邮箱 | 当前账号列表为空；没有读取或发送邮件 |
 | 视图修改后的运行可用性 | 曾持续返回 runtime_metadata_not_ready；维护者调用同一安装的 check 恢复读取，原值保留。平台根因未修复 |
+
+文件附件与个人邮箱按当前课程范围只保留概念和资料入口，不安排实操，也不列为课程待通过项目。
+
+Task 读取结果适用于已验证的 Workforce 本机应用构建，Runtime 为 0.2.2；其他环境需由维护者确认已包含对应修复。[Task 读取工具源码](https://github.com/xingshukeji/xrain-workforce/blob/c00c3b28a7c926dea03d4eff3332ff1701c01018/src/backend/plugins/tasks/host/task-tool-definition.mjs)与[执行入口源码](https://github.com/xingshukeji/xrain-workforce/blob/c00c3b28a7c926dea03d4eff3332ff1701c01018/frontend/src/plugins/tasks/components/TaskExecutionPanel.tsx)持有该次接入。平台原始记录接口的公共读取权限仍由独立产品修复处理，不属于这次 Task 应用读取的通过结论。
 
 这些是课程维护者对明确样例的验证，不代表每位学习者已完成操作，也不证明所有平台接口和所有目标环境可用。真实环境信息与凭据由环境维护者提供；公开课程不内置账号。
 
@@ -72,7 +74,7 @@ title: 资料总索引与适用版本
 | 原入口 | 何时需要 |
 |---|---|
 | [业务开发](https://github.com/xingshukeji/skills-hub/blob/f6e10f6385cd4bae937c632a81839c9cc4e86f1a/skills/workforce-business-development/SKILL.md) | 从业务目标选择模型、接口、页面与工具 |
-| [XRain CLI](https://github.com/xingshukeji/skills-hub/blob/f6e10f6385cd4bae937c632a81839c9cc4e86f1a/skills/xrain-cli/SKILL.md) | 命令行登录、元数据、数据和应用包 |
+| [XRain CLI](https://github.com/xingshukeji/skills-hub/blob/f4c48613557394cb42e37ec5b93d4f3303f93299/skills/xrain-cli/SKILL.md) | 命令行登录、元数据、数据、课程初始化和应用包 |
 | [认证](https://github.com/xingshukeji/skills-hub/blob/f6e10f6385cd4bae937c632a81839c9cc4e86f1a/skills/xrain-auth/SKILL.md) | 固定身份与正常登录恢复 |
 | [访问诊断](https://github.com/xingshukeji/skills-hub/blob/f6e10f6385cd4bae937c632a81839c9cc4e86f1a/skills/xrain-access-diagnosis/SKILL.md) | 登录后的 403、准入与数据范围 |
 | [人员生命周期](https://github.com/xingshukeji/skills-hub/blob/f6e10f6385cd4bae937c632a81839c9cc4e86f1a/skills/xrain-business-user-lifecycle/SKILL.md) | 人员接入、协作与职责变化 |
@@ -83,7 +85,7 @@ title: 资料总索引与适用版本
 
 ## CLI、样例与接口发现
 
-- CLI 的[安装](https://github.com/xingshukeji/skills-hub/blob/f6e10f6385cd4bae937c632a81839c9cc4e86f1a/skills/xrain-cli/references/installation.md)、[配置](https://github.com/xingshukeji/skills-hub/blob/f6e10f6385cd4bae937c632a81839c9cc4e86f1a/skills/xrain-cli/references/configuration.md)和[命令](https://github.com/xingshukeji/skills-hub/blob/f6e10f6385cd4bae937c632a81839c9cc4e86f1a/skills/xrain-cli/references/commands.md)按分发版本核对；本课程入口在[工具参考](/reference/tools)。
+- CLI 的[安装](https://github.com/xingshukeji/skills-hub/blob/f4c48613557394cb42e37ec5b93d4f3303f93299/skills/xrain-cli/references/installation.md)、[配置](https://github.com/xingshukeji/skills-hub/blob/f4c48613557394cb42e37ec5b93d4f3303f93299/skills/xrain-cli/references/configuration.md)和[命令](https://github.com/xingshukeji/skills-hub/blob/f4c48613557394cb42e37ec5b93d4f3303f93299/skills/xrain-cli/references/commands.md)按分发版本核对；本课程入口在[工具参考](/reference/tools)。
 - 上游[HTTP 合同样例](https://github.com/xingshukeji/skills-hub/blob/f6e10f6385cd4bae937c632a81839c9cc4e86f1a/skills/workforce-business-development/assets/http-contract-samples.json)用于比较数据结构，不表示能向任意目标重放全部请求。
 - 本课程完整的[基础源码](/downloads/note-source.json)、[标签升级源码](/downloads/note-label-source.json)、[创建值](/downloads/note-values.json)、[查询条件](/downloads/note-query.json)、[固定输入函数](/downloads/greeting.json)和[独立专题样例](/topics/data#先准备独立的专题数据)可以直接取得，不依赖上游仓库权限。
 - 当前目标的在线目录见[接口文档](/reference/)。历史记录曾出现部分目录和 OpenAPI 请求 500；本版没有重新验证所有目录，不宣称统一 Swagger/ReDoc 网站已可用。

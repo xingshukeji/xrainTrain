@@ -69,7 +69,31 @@ $context | Select-Object tenantId, userId, scope
 
 本例把教学权限集直接关联到学员。如果组织已经用角色管理学员，也可以把同一权限集关联到那个已有角色；“学员”不需要成为租户管理员或 Host 管理员。
 
-先完成教学包安装，并按上节准备好 `custom.xraintrain.practice`。**当前 CLI 能查询权限集并管理关联，不能创建权限集或把全局用户加入租户**；这些准备由管理页面或相应正式 HTTP 接口完成。不要给尚未安装的对象拼造权限名。
+先完成教学包安装。当前分发版 CLI 已支持权限目录、权限集 `create/ensure`，以及 Host 范围的租户成员 `list/ensure`。`ensure` 复用已存在的资源；创建权限集、给权限集加权限、关联人物是三个独立动作。
+
+### 原人物尚未加入租户时
+
+已有成员跳过这一步。确实缺成员关系时，由已有 Host 维护者在单独终端执行；全局 `userId` 由身份维护者核对，不根据同名猜测。这里的 `--tenant-id` 是被维护的租户，不切换登录身份：
+
+```powershell
+$base = (Read-Host '输入获准测试平台的服务地址').TrimEnd('/')
+$tenantId = Read-Host '输入要维护的租户 ID'
+$learnerUserId = Read-Host '输入已核对的原全局用户 ID'
+$cli = (Resolve-Path './xrain-cli/scripts/xrain-cli.mjs').Path
+$hostAccount = Get-Credential -Message '输入已有且获准的 Host 维护账号'
+$hostBody = @{ userName = $hostAccount.UserName; password = $hostAccount.GetNetworkCredential().Password; scope = 'host' } | ConvertTo-Json
+$hostSession = Invoke-RestMethod -Uri "$base/api/service/authen/v1/account/login" -Method Post -ContentType 'application/json; charset=utf-8' -Body $hostBody
+$env:XRAIN_TOKEN = $hostSession.access_token
+Remove-Variable hostAccount, hostBody, hostSession
+$member = node $cli host tenant member ensure --tenant-id $tenantId --user-id $learnerUserId --server $base --json | ConvertFrom-Json
+if (-not $member.ok) { throw '成员准备失败，保留原错误并处理对应原因。' }
+$member.data | Select-Object created, @{n='userId';e={$_.member.userId}}, @{n='isActive';e={$_.member.isActive}}
+Remove-Item Env:XRAIN_TOKEN -ErrorAction SilentlyContinue
+```
+
+已有成员返回 `created=false`；缺少时只把原 userId 加为普通成员，不创建全局身份。停用成员也保持原状，应由成员维护者按具体原因处理；命令不会自动恢复、改变角色或设为默认租户。学员不需要取得 Host 权限。
+
+### 准备教学权限集并关联学员
 
 原生维护账号在一个单独终端按本页完成正常登录，确认 `$context` 是维护者本人和正确租户。当前目录应包含从[正式分发目录](/reference/tools#cli-命令与安装)取得的完整 `xrain-cli/`。然后执行：
 
@@ -81,14 +105,28 @@ node $cli profile set --server $base --tenant $tenantId --profile learn
 $learnerUserName = Read-Host '输入已经登记、已加入本租户的固定学员登录名'
 $learner = node $cli security user ensure --user $learnerUserName --profile learn --json | ConvertFrom-Json
 if (-not $learner.ok) { throw '先处理原用户或租户成员缺口，不把查询失败当成没有账号。' }
-$practiceSet = node $cli security permission-set show --permission-set custom.xraintrain.practice --profile learn --json | ConvertFrom-Json
-if (-not $practiceSet.ok) { throw '教学权限集尚未准备好。' }
-$practiceSet.data | Select-Object permissionSetName, permissions
+$catalog = node $cli security permissions catalog --profile learn --json | ConvertFrom-Json
+if (-not $catalog.ok) { throw '权限目录读取失败。' }
+$notePermissions = @($catalog.data.permissions | Where-Object {
+  $_.name -match '^platform\.entity\.xrainlearn__note__c\.(read|create|edit|delete)$' -or
+  $_.name -match '^platform\.field\.xrainlearn__note__c\.content__c\.(read|create|edit)$' -or
+  $_.name -match '^platform\.field\.xrainlearn__note__c\.(id|ownerId|createdById|createdAt|updatedById|updatedAt|isDeleted|deletedById|deletedAt|externalId|externalSource)\.read$'
+})
+if ($notePermissions.Count -ne 18) { throw '目标权限目录与本课不同，先核对已安装对象，不补造名称。' }
+$notePermissions | Select-Object name, label
+$setDefinition = @{ name = 'custom.xraintrain.practice'; label = 'XRain 课程便签练习'; helpText = '教学便签对象和字段资格' } | ConvertTo-Json
+$practiceSet = $setDefinition | node $cli security permission-set ensure --permission-set custom.xraintrain.practice --values-json - --profile learn --json | ConvertFrom-Json
+if (-not $practiceSet.ok) { throw '教学权限集准备失败。' }
+$practiceSet.data | Select-Object created, @{n='name';e={$_.permissionSet.permissionSetName}}
 ```
 
-这里的 `ensure` 没有提供创建资料，只查询和复用原用户。预期为 `created=false`，不会覆盖原密码、名称、角色或权限。审阅返回的 18 项权限，确认只有便签对象、内容字段和标准字段的上述资格，再执行已获准的关联：
+用户 `ensure` 没有提供创建资料，只复用原人物。权限集 `ensure` 在明确不存在时按所给资料创建；已有权限集返回 `created=false`，不覆盖名称、权限或绑定。审阅目录选出的 18 项权限，只包含上述便签资格。发现已有权限集混入其他权限时先停止，保留原配置：
 
 ```powershell
+$allowedNames = @($notePermissions.name)
+$outside = @($practiceSet.data.permissionSet.permissions | Where-Object { $_ -notin $allowedNames })
+if ($outside.Count) { throw '已有权限集含本课之外的权限，先由维护者审阅，不自动覆盖或撤权。' }
+node $cli security permission-set grant-permission --permission-set custom.xraintrain.practice --permissions ($allowedNames -join ',') --profile learn --json
 node $cli security user grant-permission-set --user $learnerUserName --permission-sets custom.xraintrain.practice --profile learn --json
 node $cli security user show --user $learnerUserName --profile learn --json
 Remove-Item Env:XRAIN_TOKEN -ErrorAction SilentlyContinue
@@ -97,7 +135,7 @@ Remove-Variable headers
 
 回读的 `userId` 必须仍是原人物，`permissionSets` 包含教学权限集。对已完成准备的人重复执行应复用同一人物和关联。之后由学员用自己的登录重新验证 describe、创建和回读，维护者会话不交给学员。
 
-如果确实缺少已获准创建的平台学员，可在核对全局身份后使用 `security user ensure --values-json -`，从受保护输入提供平台创建资料；这不会创建统一认证中心身份，也不会自动授予角色。同一人在全局已有身份、只是缺租户成员时，应从 Host 成员管理加入原 `userId`，避免重复建人。
+如果确实缺少已获准创建的平台学员，可在核对全局身份后使用 `security user ensure --values-json -`，从受保护输入提供平台创建资料；这不会创建统一认证中心身份，也不会自动授予角色。同一人在全局已有身份、只是缺租户成员时，使用上面的 Host 成员步骤复用原 `userId`。
 
 ## 准备完成的可观察结果
 
@@ -121,8 +159,8 @@ Remove-Variable headers
 | CLI 元数据和读写 | 正常原生登录的短期 Bearer，或已关联且加入租户的统一认证会话；当前人有对象资格 | 按[CLI 的两种登录路径](/reference/tools#cli-命令与安装)准备；应用包命令另需浏览器会话 |
 | 金额、选项、关联与分享 | 独立专题包、所需对象/字段资格；分享需要两个固定人物 | 先按[专题数据准备](/topics/data#先准备独立的专题数据)交接，不扩张便签 |
 | Routine 真实运行 | 已配置的活跃执行成员，对该只读动作有实际资格 | 可做 schedule-preview；保留缺口，不自行改共享执行身份 |
-| 文件上传与关联 | 应用已配置受管文件服务凭据，并有可用附件入口和关联资源 | 保留上传错误及草稿；没有 fileId 就不报告关联或下载成功 |
-| AI 只读工具 | 当前人物已有获准助手、可用模型及明确的只读工具 | 可以完成 Task 源码和页面读取链；AI 工具执行仍未完成 |
-| 个人邮箱 | 当前真实用户已有获准使用的个人邮箱账号 | 账号列表为空就停止，不借用别人的邮箱或改用服务 Token |
+| AI 读取 Task | 完成[Task 执行前置任务](/topics/workforce#准备-task-执行入口)，核对原人物、模型和已包含读取修复的应用构建；Task 路径无需先订阅个人助手 | 本人页面可读而执行入口缺能力时由产品维护者修复；不要求学员额外加权或自建工具 |
+
+文件附件与个人邮箱本轮只保留[概念与资料](/topics/integration)，不需要准备其服务、账号或实操数据。
 
 维护者应为具体练习提供已经具备这些条件的目标。课程不要求学习者临时签发凭据、扩大权限、创建新的长期账号，或给真实收件人发送消息。

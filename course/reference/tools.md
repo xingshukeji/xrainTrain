@@ -62,7 +62,9 @@ node $cli data query xrainlearn__note__c --query-json './note-query.json' --prof
 
 创建会真实新增记录，选择 HTTP 或 CLI 路径完成首课即可，不必为了比较工具重复创建。CLI JSON 成功外层是 `{ok:true,data:...}`，失败为 `{ok:false,error:...}`；HTTP 记录接口没有这个统一外层。
 
-维护者的用户与权限准备见[用 CLI 初始化练习资格](/help/environment#用-cli-初始化练习资格)。
+课程需要的常见操作已包括元数据查询、记录创建／读取／修改／删除、分页查询、权限目录、权限集创建／复用、权限关联及既有全局人物加入租户。维护者的完整步骤见[用 CLI 初始化练习资格](/help/environment#用-cli-初始化练习资格)。
+
+权限集 `ensure` 不自动授予权限；Host 成员 `ensure` 不创建全局身份、不授管理员。命令支持某项操作，也仍需当前人具有相应资格；用所取分发版的子命令帮助核对参数。
 
 应用命令包括 `app build`、`app import`、`app preview`、`app install` 和 operation 查询。**当前 CLI 已提供 install**；旧资料中“没有 app install”的说明不再适用。按你所用分发版本的该子命令 `--help` 核对参数。
 

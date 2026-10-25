@@ -33,9 +33,9 @@ title: 平台能力地图
 | 定时执行 Routine | 先预览计划，再以确定执行人运行一次读取动作 | [Routine](/topics/automation#定时-routine) |
 | 外部系统与 HTTP 集成 | 只读回声接口，一个输入、一个返回值 | [集成专题](/topics/integration) |
 | 消息、Task 与通知投递 | 分清任务状态、消息记录、受理与送达 | [投递结果](/topics/integration#消息与投递结果) |
-| 文件与附件 | 一份无敏感信息小文件，验证上传、关联与再次读取 | [文件](/topics/integration#文件与附件) |
-| 个人邮箱 | 用明确授权的个人连接检查收件箱，发送另行确认 | [个人邮箱](/topics/integration#个人邮箱是另一种身份范围) |
-| AI、工具与执行资格 | 让已配置助手调用一个获授权的只读工具 | [AI 与 Workforce](/topics/workforce) |
+| 文件与附件 | 认识 fileId、业务关联和下载权限；本轮不做实操 | [文件](/topics/integration#文件与附件) |
+| 个人邮箱 | 认识个人身份与邮件引用；本轮不做实操 | [个人邮箱](/topics/integration#个人邮箱是另一种身份范围) |
+| AI、工具与执行资格 | 先核对 Task 执行入口，再读取自己的合成 Task | [AI 与 Workforce](/topics/workforce#准备-task-执行入口) |
 | 实际业务主线与工程接入 | 追踪一个 Task 字段，从定义到页面和读取消费者 | [Workforce 综合练习](/topics/workforce#追踪一个真实字段) |
 
 ## 承担维护职责时再深入
