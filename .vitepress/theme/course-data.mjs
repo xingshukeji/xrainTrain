@@ -1,5 +1,5 @@
 export const lessons = [
-  { id: 'g0', title: 'G0 · 我的第一条便签', path: '/start', outcome: '保存并重新读到一条真实便签', minutes: 25 },
+  { id: 'g0', title: 'G0 · 我的第一条便签', path: '/start', outcome: '保存并重新读到一条真实便签', minutes: 15 },
   { id: 'b1', title: 'B1 · 定义与记录', path: '/basics/model', outcome: '分清对象、字段和记录', minutes: 12 },
   { id: 'b2', title: 'B2 · 找到并读懂接口', path: '/basics/api', outcome: '独立找到读取接口的合同', minutes: 15 },
   { id: 'b3', title: 'B3 · 读写与查询', path: '/basics/data', outcome: '修改同一条记录并按条件查询', minutes: 20 },

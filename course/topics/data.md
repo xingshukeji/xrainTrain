@@ -5,6 +5,8 @@ title: 查询、视图与数据维护
 
 适合已经完成 B1—B5、开始处理列表、统计和协作的人。每个小例子独立选择，不需要把全部能力加入便签。
 
+**第一次只做分页与汇总：** 先由维护者准备下面的专题包和三条合成数据，再执行“当前页、总数与汇总”的请求。能解释“本页 1 条、总共 3 条、总额 60.90”就可以停下。视图、分享、批量修改和恢复按实际需要另选，不要求一次做完。
+
 ## 先准备独立的专题数据
 
 下载完整[专题包源码 topics-source.json](/downloads/topics-source.json)、[三条合成账目 topics-values.json](/downloads/topics-values.json)和[分页汇总请求 topics-query.json](/downloads/topics-query.json)。这组样例使用独立命名空间 `xrainlab`，不修改基础便签。

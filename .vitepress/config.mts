@@ -23,8 +23,9 @@ export default defineConfig({
     sidebarMenuLabel: '课程目录', returnToTopLabel: '返回顶部', skipToContentLabel: '跳到正文',
     darkModeSwitchLabel: '外观', darkModeSwitchTitle: '切换为深色', lightModeSwitchTitle: '切换为浅色',
     logo: '/mark.svg', siteTitle: 'XRain 学习课', outline: { level: [2, 3], label: '本页内容' },
-    nav: [{ text: '开始学习', link: '/start' }, { text: '能力地图', link: '/map' }, { text: '接口文档', link: '/reference/' }, { text: '学习记录', link: '/progress' }],
+    nav: [{ text: '开始学习', link: '/start' }, { text: '操作视频', link: '/platform-tour' }, { text: '能力地图', link: '/map' }, { text: '接口文档', link: '/reference/' }, { text: '学习记录', link: '/progress' }],
     sidebar: [
+      { text: '先认识平台', items: [{ text: '跟着视频认识平台', link: '/platform-tour' }] },
       { text: '先做出一条便签', items: lessons.map(({ title, path }) => ({ text: title, link: path })) },
       { text: '按问题继续学', collapsed: false, items: [{ text: '平台能力地图', link: '/map' }, { text: '查询、视图与数据维护', link: '/topics/data' }, { text: '函数、事件与定时任务', link: '/topics/automation' }, { text: '集成、文件与消息', link: '/topics/integration' }, { text: 'AI 与 Workforce 综合练习', link: '/topics/workforce' }, { text: '安装与持续维护', link: '/topics/operations' }] },
       { text: '随时查阅', items: [{ text: '接口文档从哪里开始', link: '/reference/' }, { text: 'HTTP 记录与元数据', link: '/reference/http' }, { text: 'CLI、SDK 与应用包', link: '/reference/tools' }, { text: '按现象排错', link: '/help/errors' }, { text: '准备真实练习环境', link: '/help/environment' }, { text: '术语与来源', link: '/reference/glossary' }, { text: '资料总索引与适用版本', link: '/reference/sources' }] }

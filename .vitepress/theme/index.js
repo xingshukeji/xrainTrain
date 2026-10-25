@@ -5,6 +5,7 @@ import QuizCard from './components/QuizCard.vue'
 import LearningRecord from './components/LearningRecord.vue'
 import CourseProgress from './components/CourseProgress.vue'
 import NoteLab from './components/NoteLab.vue'
+import CourseVideo from './components/CourseVideo.vue'
 import './style.css'
 export default {
   extends: DefaultTheme,
@@ -15,5 +16,6 @@ export default {
     app.component('LearningRecord', LearningRecord)
     app.component('CourseProgress', CourseProgress)
     app.component('NoteLab', NoteLab)
+    app.component('CourseVideo', CourseVideo)
   }
 }
