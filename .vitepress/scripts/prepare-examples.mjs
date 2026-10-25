@@ -8,7 +8,10 @@ const files = [
   ['examples/note/label-source.json', 'note-label-source.json'],
   ['examples/note/values.json', 'note-values.json'],
   ['examples/note/query.json', 'note-query.json'],
-  ['examples/automation/greeting.json', 'greeting.json']
+  ['examples/automation/greeting.json', 'greeting.json'],
+  ['examples/topics/source.json', 'topics-source.json'],
+  ['examples/topics/values.json', 'topics-values.json'],
+  ['examples/topics/query.json', 'topics-query.json']
 ]
 for (const [source, name] of files) await copyFile(new URL(source, root), new URL(name, downloads))
 let commit = process.env.GITHUB_SHA || 'local-source'

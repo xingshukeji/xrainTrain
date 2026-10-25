@@ -66,6 +66,10 @@ $result | Select-Object isSuccess, output, errorCode
 
 最小练习应只做一次提交前校验，例如在独立教学对象上拒绝不符合规则的输入，核对拒绝后记录是否保存。提交后通知另作独立练习。不要从一个既有生产对象复制全部触发器来“看会发生什么”。
 
+使用[专题包](/topics/data#先准备独立的专题数据)时，对象和编排必须在该安装的有效定义集合中。不能把另一个临时创建、未纳入该包的编排 ID 直接绑定给受包管理对象；本次目标会以 `application_package_invalid` 拒绝。包内的 `xrainlabBeforeCheck` 已提供完整响应合同，固定返回 `code=course.rule_rejected`，用于观察拒绝路径。它不是生产校验规则。
+
+由维护者在 `xrainlab__entry__c` 上绑定该编排为一次 Before Insert 练习，提交一条标题为“课程拒绝保存演示”的合成输入；检查拒绝结果，再查询相同标题，数量应仍为 `0`。**验证后停用这个教学 Trigger**，并回读 `isActive=false`，避免继续阻止后续练习。不要把返回拒绝的编排直接绑定到业务对象。
+
 重复事件、运行记录和外部回执各有身份，不能从一个 eventId 推出“恰好一次投递”。后续写回也应按实际变化限制，避免无条件自更新形成循环。
 
 ## 定时 Routine
@@ -73,6 +77,16 @@ $result | Select-Object isSuccess, output, errorCode
 Routine 绑定编排、固定输入和调度；Owner 负责维护，实际执行成员另由目标配置决定。第一步先读 `/api/automation/routines/execution-user`，确认是否配置了可用执行人，再用 schedule-preview 看下一次时刻。
 
 最小练习：一个读取型动作，一次明确调度，预览后按获准范围启用，检查对应 run 的输出。不能把“已启用”或“有 run ID”当作业务已经完成。
+
+```powershell
+$executionUser = Invoke-RestMethod -Uri "$base/api/automation/routines/execution-user" -Headers $headers
+$schedule = @{ scheduleType = 'Daily'; executeTime = '09:00'; timeZoneId = 'Asia/Shanghai' } | ConvertTo-Json
+$preview = Invoke-RestMethod -Uri "$base/api/automation/routines/schedule-preview" -Method Post -Headers $headers -ContentType 'application/json' -Body $schedule
+$executionUser.userId
+$preview | Select-Object nextRunAt, timeZoneId, offset
+```
+
+`userId=null` 表示还没有执行成员。此时可以完成预览和前置条件检查，**不能把真实运行勾选为已完成**，也不为了练习自行改变共享租户的执行身份。本次全课检查保留了目标未配置状态，验证了实际运行请求被拒绝且没有活动运行；成功运行及输出仍待有执行成员的环境验证。
 
 ## 时间与执行人
 

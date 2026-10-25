@@ -2,8 +2,11 @@ import { ref } from 'vue'
 import { emptyProgress, parseProgress, storageKey, updateProgress } from './progress.mjs'
 const state = ref(emptyProgress())
 const storageAvailable = ref(true)
+let loaded = false
 export function useProgress() {
   function load() {
+    if (loaded) return
+    loaded = true
     try { state.value = parseProgress(localStorage.getItem(storageKey)); storageAvailable.value = true }
     catch { storageAvailable.value = false }
   }

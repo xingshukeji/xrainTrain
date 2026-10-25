@@ -1,0 +1,9 @@
+{
+  "page": 1,
+  "pageSize": 1,
+  "fields": ["title__c", "amount__c"],
+  "filter": { "field": "title__c", "op": "contains", "value": "课程合成账目" },
+  "sort": [{ "field": "title__c", "direction": "asc" }],
+  "includeTotalCount": true,
+  "aggregates": [{ "field": "amount__c", "function": "sum", "alias": "totalAmount" }]
+}

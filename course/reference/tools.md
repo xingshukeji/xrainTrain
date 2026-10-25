@@ -17,28 +17,52 @@ node $cli --help
 node $cli profile list
 ```
 
-profile 只是连接配置。首次使用当前练习连接时，按维护者给出的真实地址和租户正常登录：
+profile 只是连接配置。CLI 的 `--tenant` 接收 `tenantId`，与原生登录示例的 `tenantCode` 是两种参数。先选择你已有的登录方式，再执行下方共用的数据命令。
+
+### 已有原生账号：继续使用正常登录凭据
+
+先在本机 PowerShell 7 完成[一次正常登录](/help/environment#学习者准备一次正常登录)，核对 `$context`。CLI 的通用元数据、数据与安全管理命令支持显式提供 Bearer；这里使用刚才登录返回的短期凭据：
+
+```powershell
+$tenantId = $context.tenantId
+$env:XRAIN_TOKEN = $headers.Authorization.Substring(7)
+$cliAuth = 'auto'
+node $cli profile set --server $base --tenant $tenantId --profile learn
+```
+
+`XRAIN_TOKEN` 只存在于当前终端及其子进程中，不把它写进 profile、文件或命令参数。这里的 Bearer 是正常原生登录凭据，**不是平台 API Token，也不是伪造的浏览器会话**。安全管理仍按当前人的实际权限执行；普通学员不会因此得到维护权限。结束后执行 `Remove-Item Env:XRAIN_TOKEN -ErrorAction SilentlyContinue`，并清除 `$headers`。
+
+### 已有统一身份：使用浏览器登录
+
+统一认证身份须已关联到平台用户，并且是练习租户的有效成员；同名不足以证明关联。用维护者给出的准确租户 ID 登录：
 
 ```powershell
 $base = (Read-Host '输入获准测试平台的服务地址').TrimEnd('/')
-$tenantCode = Read-Host '输入准确的租户代码'
-node $cli auth login --server $base --tenant $tenantCode --profile learn
+$tenantId = Read-Host '输入准确的租户 ID（不是租户代码）'
+node $cli auth login --server $base --tenant $tenantId --profile learn
+$cliAuth = 'session'
 ```
 
-CLI 使用浏览器的正式统一认证流程。浏览器和 CLI 必须能在同一台机器完成回调；登录过程中保留终端。原生登录示例和统一认证流程分别使用各自正式入口，不把一边的会话伪装成另一边的会话文件。
+`auth login` 使用浏览器的正式统一认证流程。浏览器和 CLI 必须能在同一台机器完成回调；登录过程中保留终端。`--auth session` 明确选择该浏览器会话，避免终端中残留的其他凭据抢先。
+
+缺少统一身份或关联时，由身份与租户维护者处理；`security user ensure` 只处理平台用户，不能创建认证中心身份。已有原生账号的元数据和数据练习可以采用上一条路径；CLI 的 `app build/import/preview/install` 等应用包命令仍要求正式浏览器会话。
+
+### 用所选身份完成便签读写
 
 下载 [values](/downloads/note-values.json) 和 [query](/downloads/note-query.json) 后，可以通过 CLI 使用同一对象：
 
 ```powershell
-node $cli metadata describe xrainlearn__note__c --profile learn --auth session --json
-$created = node $cli data create xrainlearn__note__c --values-json './note-values.json' --profile learn --auth session --json | ConvertFrom-Json
+node $cli metadata describe xrainlearn__note__c --profile learn --auth $cliAuth --json
+$created = node $cli data create xrainlearn__note__c --values-json './note-values.json' --profile learn --auth $cliAuth --json | ConvertFrom-Json
 if (-not $created.ok) { throw '创建失败，请读取实际错误。' }
 $recordId = $created.data.recordId
-node $cli data get xrainlearn__note__c $recordId --profile learn --auth session --json
-node $cli data query xrainlearn__note__c --query-json './note-query.json' --profile learn --auth session --json
+node $cli data get xrainlearn__note__c $recordId --profile learn --auth $cliAuth --json
+node $cli data query xrainlearn__note__c --query-json './note-query.json' --profile learn --auth $cliAuth --json
 ```
 
 创建会真实新增记录，选择 HTTP 或 CLI 路径完成首课即可，不必为了比较工具重复创建。CLI JSON 成功外层是 `{ok:true,data:...}`，失败为 `{ok:false,error:...}`；HTTP 记录接口没有这个统一外层。
+
+维护者的用户与权限准备见[用 CLI 初始化练习资格](/help/environment#用-cli-初始化练习资格)。
 
 应用命令包括 `app build`、`app import`、`app preview`、`app install` 和 operation 查询。**当前 CLI 已提供 install**；旧资料中“没有 app install”的说明不再适用。按你所用分发版本的该子命令 `--help` 核对参数。
 
@@ -124,6 +148,20 @@ $operation | Select-Object id, status, installationId, errorCode
 提交前记录 requestId。结果未知或仍在运行时，使用原编号 GET `/api/application/v1/operations/{requestId}`。只有操作成功，并且 GET `/api/application/v1/installations/{installationId}` 的租户、包、版本和 revision 一致，才报告安装完成。
 
 1.0.1 标签升级使用对应完整源码和新构建文件；读取现有 revision，保留已有视图绑定，升级请求的 `tenantBindings` 用空字典即可。本例已验证只有 `content__c` 标签发生变化，详见[B6](/basics/version)。
+
+### 专题包的影响确认 {#专题包的影响确认}
+
+基础便签初装没有需确认的分享、事件或可执行源码变更，使用上面的 `ready=true` 提交步骤。独立专题包还包含这些变更，应先审阅完整源码和 preview 中的 securityChange。已有专题安装时直接核对现状，不重新发起初装。
+
+首次安装若只剩已审阅的影响确认、没有绑定缺口或冲突，维护者可通过平台的受管安装操作进入 `WaitingForResolution`；此时组件尚未生效。读取原 operation 的 `details.requiredConfirmations`，根据审阅结果选择对应项，不循环重发新的安装请求。确认请求使用 `POST /api/application/v1/operations/{operationId}/resolve`：
+
+| 输入 | 从哪里取得 |
+|---|---|
+| `expectedRevision` | 同一 installation 的当前 revision |
+| `tenantBindings` | 本次缺少的合法绑定；保留已有绑定时不重复指定 Owner |
+| `confirmations` | 已审阅项的 `{recordId, unit, token}`；使用当前 operation 返回值 |
+
+本次专题初装验证了同一操作从等待确认到 `Succeeded`，升级时也核对了精确源码影响。独立 preview 的确认摘要若发生变化，不把前一次摘要当作仍然有效，也不自动勾选所有项；保留差异，在同一待处理操作中重新核对。解决后仍需读取 installation、有效 describe 和原业务记录。
 
 ## 记住几种不同的 ID
 

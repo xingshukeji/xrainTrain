@@ -51,9 +51,12 @@ $packageId = 'apgc5deec239e1d8b0ba'
 $packages = Invoke-RestMethod -Uri "$base/api/application/v1/packages" -Headers $headers
 $installed = $packages | Where-Object id -eq $packageId
 $installed | Select-Object id, installedVersionId, installationId, revision
+if (-not $installed.installationId) { throw '此租户尚未安装教学包，先完成环境准备。' }
+$installationState = Invoke-RestMethod -Uri "$base/api/application/v1/installations/$($installed.installationId)" -Headers $headers
+$installationState | Select-Object packageId, installedVersionId, revision, activeOperationId
 ```
 
-保存这里的版本与 `revision`。如果 `activeOperationId` 指向一个尚未完成的操作，先跟踪它，不能另起一次并行升级。
+保存安装详情中的版本与 `revision`。包目录不包含 `activeOperationId`，必须另读 installation；若其中指向一个尚未完成的操作，先跟踪它，不能另起一次并行升级。
 
 ## 一次非破坏性修改
 

@@ -13,7 +13,8 @@ export default defineConfig({
         const href = tokens[index].attrGet('href') || ''
         const rendered = renderLink(tokens, index, options, env, self)
         if (!href.startsWith('/downloads/')) return rendered
-        tokens[index].attrSet('download', href.split('/').pop()!.replace(/^note-/, ''))
+        const filename = href.split('/').pop()!
+        tokens[index].attrSet('download', filename === 'note-source.json' ? 'source.json' : filename)
         return self.renderToken(tokens, index, options)
       }
     }

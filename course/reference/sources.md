@@ -17,7 +17,25 @@ title: 资料总索引与适用版本
 | 平台查看 | 数据视图“学习便签”中可见“你好，XRain”；新增表单有内容输入与保存入口 |
 | 便签包 1.0.1 | 保持对象、字段和记录 ID，只修改字段标签为“便签内容”；原内容保留 |
 | 固定输入函数 | 调试入口输入 name 为“学习者”，得到“你好，学习者” |
-| Task 字段消费者 | 核对元数据、服务映射、路由及页面源码；没有执行完整 Task 写入练习 |
+| 数据专题 | Money 精确回读、Picklist value/label、Lookup、分页 1/总数 3/合计 60.90、去重、唯一查询、queryBatch、批量冲突回滚、个人视图、分享后撤销、历史、导出与回收站恢复得到预期结果 |
+| Trigger | Before Insert 拒绝后同标题记录数仍为 0；验证后回读教学 Trigger 已停用 |
+| 只读集成 | 按实际 catalog 调用只读测试接口；外层 200、远端 200、业务内容符合预期；未发送消息 |
+| 时间 | 核对当地重复时刻的两个候选及 25 小时业务日；Routine 调度预览成功 |
+| SDK | 通过当前应用所安装 SDK 的公开导出读取 context、describe、自己的便签及 queryBatch，核对实际返回形状 |
+| CLI 数据与初始化 | 使用正常原生登录 Bearer 运行 describe、创建、回读与查询；复用固定维护者，重复关联原有 18 项教学权限后，人物与权限保持一致 |
+| Task 字段消费者 | 核对指定提交的元数据、服务映射、路由及页面；实际创建并重新打开本人的合成 Task，ID 与内容一致 |
+| 网页与样例 | 全部 23 页、8 道题、7 个分步图解；检查下载字节与文件名、搜索、深层刷新和本地记录 |
+
+以下项目没有达到完整实操通过条件，继续保留其真实边界：
+
+| 项目 | 本次实际结果 |
+|---|---|
+| CLI 浏览器登录与应用包命令 | 已核对正式统一登录入口；目标缺少已关联且加入租户的可用统一身份，未完成浏览器登录后的应用包 CLI 操作；通用数据命令已按上表单独实跑 |
+| Routine 实际运行 | 未配置执行成员；预览和拒绝路径已核对，没有活动运行，保持原配置 |
+| 附件上传、关联与再打开 | 应用未配置文件服务凭据；实际上传返回 503，消息未发送，没有 fileId |
+| AI 工具读取 Task | 当前人物没有可用助手；已完成合成 Task 页面回读，未执行 AI 工具 |
+| 个人邮箱 | 当前账号列表为空；没有读取或发送邮件 |
+| 视图修改后的运行可用性 | 曾持续返回 runtime_metadata_not_ready；维护者调用同一安装的 check 恢复读取，原值保留。平台根因未修复 |
 
 这些是课程维护者对明确样例的验证，不代表每位学习者已完成操作，也不证明所有平台接口和所有目标环境可用。真实环境信息与凭据由环境维护者提供；公开课程不内置账号。
 
@@ -67,7 +85,7 @@ title: 资料总索引与适用版本
 
 - CLI 的[安装](https://github.com/xingshukeji/skills-hub/blob/f6e10f6385cd4bae937c632a81839c9cc4e86f1a/skills/xrain-cli/references/installation.md)、[配置](https://github.com/xingshukeji/skills-hub/blob/f6e10f6385cd4bae937c632a81839c9cc4e86f1a/skills/xrain-cli/references/configuration.md)和[命令](https://github.com/xingshukeji/skills-hub/blob/f6e10f6385cd4bae937c632a81839c9cc4e86f1a/skills/xrain-cli/references/commands.md)按分发版本核对；本课程入口在[工具参考](/reference/tools)。
 - 上游[HTTP 合同样例](https://github.com/xingshukeji/skills-hub/blob/f6e10f6385cd4bae937c632a81839c9cc4e86f1a/skills/workforce-business-development/assets/http-contract-samples.json)用于比较数据结构，不表示能向任意目标重放全部请求。
-- 本课程完整的[基础源码](/downloads/note-source.json)、[标签升级源码](/downloads/note-label-source.json)、[创建值](/downloads/note-values.json)、[查询条件](/downloads/note-query.json)与[固定输入函数](/downloads/greeting.json)可以直接取得，不依赖上游仓库权限。
+- 本课程完整的[基础源码](/downloads/note-source.json)、[标签升级源码](/downloads/note-label-source.json)、[创建值](/downloads/note-values.json)、[查询条件](/downloads/note-query.json)、[固定输入函数](/downloads/greeting.json)和[独立专题样例](/topics/data#先准备独立的专题数据)可以直接取得，不依赖上游仓库权限。
 - 当前目标的在线目录见[接口文档](/reference/)。历史记录曾出现部分目录和 OpenAPI 请求 500；本版没有重新验证所有目录，不宣称统一 Swagger/ReDoc 网站已可用。
 
 ## 维护这份课程

@@ -1,0 +1,174 @@
+{
+  "packageId": "apgac0c05e3b5c9a27be",
+  "namespace": "xrainlab",
+  "label": "XRain 课程专题练习",
+  "versionId": "apve270852380539e468",
+  "version": "1.0.1",
+  "records": [
+    {
+      "id": "00483bb02172950fc9f3",
+      "kind": "BizObject",
+      "values": {
+        "keyPrefix": "1tq",
+        "label": "专题练习账目",
+        "entityApiName": "xrainlab__entry__c",
+        "manualSharingEnabled": true,
+        "triggersEnabled": true
+      }
+    },
+    {
+      "id": "004511359251d42a3464",
+      "kind": "BizObject",
+      "values": {
+        "keyPrefix": "1tr",
+        "label": "专题练习分类",
+        "entityApiName": "xrainlab__category__c"
+      }
+    },
+    {
+      "id": "0056d305db42f9ec1412",
+      "kind": "BizField",
+      "values": {
+        "entityDefinitionId": "00483bb02172950fc9f3",
+        "fieldApiName": "title__c",
+        "label": "说明",
+        "type": "Text",
+        "nullable": false,
+        "length": 120,
+        "searchable": true,
+        "sortable": true
+      }
+    },
+    {
+      "id": "00542c2cc64990582412",
+      "kind": "BizField",
+      "values": {
+        "entityDefinitionId": "00483bb02172950fc9f3",
+        "fieldApiName": "amount__c",
+        "label": "金额",
+        "type": "Money",
+        "nullable": false,
+        "length": 18,
+        "scale": 2,
+        "sortable": true
+      }
+    },
+    {
+      "id": "005d9fecf209376be0d2",
+      "kind": "BizField",
+      "values": {
+        "entityDefinitionId": "00483bb02172950fc9f3",
+        "fieldApiName": "category__c",
+        "label": "类别",
+        "type": "Picklist",
+        "nullable": true,
+        "valuePicklistId": "006b19fab9ab108e7bb1"
+      }
+    },
+    {
+      "id": "005f54e997bba5e0b7d6",
+      "kind": "BizField",
+      "values": {
+        "entityDefinitionId": "00483bb02172950fc9f3",
+        "fieldApiName": "categoryRef__c",
+        "label": "关联分类",
+        "type": "Lookup",
+        "nullable": true,
+        "targetEntityDefinitionId": "004511359251d42a3464"
+      }
+    },
+    {
+      "id": "005c608ceb8a21644939",
+      "kind": "BizField",
+      "values": {
+        "entityDefinitionId": "004511359251d42a3464",
+        "fieldApiName": "name__c",
+        "label": "分类名称",
+        "type": "Text",
+        "nullable": false,
+        "length": 80,
+        "searchable": true,
+        "sortable": true
+      }
+    },
+    {
+      "id": "006b19fab9ab108e7bb1",
+      "kind": "BizPicklist",
+      "values": {
+        "name": "xrainlabCategory",
+        "label": "专题类别",
+        "isActive": true
+      }
+    },
+    {
+      "id": "007e06ba8a9d8940d062",
+      "kind": "BizPicklistItem",
+      "values": {
+        "name": "work",
+        "label": "工作",
+        "isActive": true,
+        "refPicklistId": "006b19fab9ab108e7bb1"
+      }
+    },
+    {
+      "id": "007dded34a8265f50466",
+      "kind": "BizPicklistItem",
+      "values": {
+        "name": "life",
+        "label": "生活",
+        "isActive": true,
+        "refPicklistId": "006b19fab9ab108e7bb1"
+      }
+    },
+    {
+      "id": "00m0a9a44270c7f506e7",
+      "kind": "BizListView",
+      "values": {
+        "name": "xrainlabEntries",
+        "label": "专题练习账目",
+        "refObjectId": "00483bb02172950fc9f3",
+        "fieldNames": [
+          "title__c",
+          "amount__c",
+          "category__c",
+          "categoryRef__c"
+        ]
+      }
+    },
+    {
+      "id": "00md1193c752cd639ddf",
+      "kind": "BizListView",
+      "values": {
+        "name": "xrainlabCategories",
+        "label": "专题练习分类",
+        "refObjectId": "004511359251d42a3464",
+        "fieldNames": [
+          "name__c"
+        ]
+      }
+    },
+    {
+      "kind": "BizOrchestration",
+      "id": "01pb72b6cace46f784a1",
+      "values": {
+        "isActive": true,
+        "label": "课程提交前校验",
+        "currentVersionId": "01ra1eca4f6aab1bea9a",
+        "name": "xrainlabBeforeCheck"
+      }
+    },
+    {
+      "kind": "BizOrchestrationVersion",
+      "id": "01ra1eca4f6aab1bea9a",
+      "values": {
+        "versionNo": 1,
+        "refOrchestrationId": "01pb72b6cace46f784a1",
+        "inputModel": {
+          "fields": []
+        },
+        "source": "function execute(ctx) { return { code: 'course.rule_rejected', message: '课程提交前校验：本次演示拒绝保存' }; }"
+      }
+    }
+  ]
+}
+
