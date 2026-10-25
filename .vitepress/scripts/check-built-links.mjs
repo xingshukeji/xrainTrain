@@ -31,6 +31,9 @@ for (const [file, text] of html) {
     count++
   }
 }
-for (const file of files) if (/[/\\](?:internal|\.local)(?:[/\\]|$)/.test(file)) issues.add(`产物包含内部目录 ${file}`)
+for (const file of files) {
+  const path = relative(dist, file)
+  if (/(?:^|[/\\])(?:internal|\.local)(?:[/\\]|$)/.test(path)) issues.add(`产物包含内部目录 ${path}`)
+}
 if (issues.size) { console.error([...issues].join('\n')); process.exitCode = 1 }
 else console.log(`产物引用检查通过：${html.size} 个 HTML 页面，${count} 个链接与资源。`)
