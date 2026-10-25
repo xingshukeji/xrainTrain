@@ -2,93 +2,115 @@
 title: B2 · 找到并读懂接口
 lesson: b2
 flow:
-  title: 一次读取请求经过什么
-  description: 这是浏览器或工具与 XRain 之间的公开交互，图中不推测服务内部调用顺序。
+  title: 读取一条便签
+  description: 看清请求发了什么，以及返回了什么。
   steps:
-    - title: 选择要读的记录
-      caption: 对象 API 名 + 创建时返回的 recordId
-      detail: 从自己的创建响应取得 recordId，用对象 API 名选择记录接口。字段 ID 和对象定义 ID 都不能替代 recordId。
-    - title: 发出 GET 请求
-      caption: 方法、路径、当前登录身份
-      detail: 客户端把完整路径与当前登录会话发给目标服务。租户由被验证的会话确定；在请求体里添加 tenantId 不会切换租户。
-    - title: 平台返回结果
-      caption: HTTP 状态 + 对应接口的正文
-      detail: 平台按实际身份与权限处理。成功读取通常返回 200 和记录对象；失败按状态和错误内容解释，不能当作一条空记录。
-    - title: 对照预期
-      caption: 同一个 recordId，读取 values.content__c
-      detail: 核对身份、对象、recordId 和内容是否一致。读取成功只证明本次读取，并不证明你能修改记录或调用其他接口。
+    - title: 选中记录
+      caption: 便签对象 + 你的 recordId
+      detail: 对象 API 名选择便签，recordId 选择其中一条。沿用 G0 保存的编号。
+    - title: 发送请求
+      caption: GET + 请求地址 + 登录凭据
+      detail: GET 表示读取。当前租户和用户由登录凭据确定，这个请求不需要 JSON 正文。
+    - title: 查看响应
+      caption: 状态码 + 返回内容
+      detail: 成功时得到 200 和记录内容。失败时先读状态码和错误信息。
+    - title: 找到文字
+      caption: values.content__c
+      detail: 这里应是“你好，XRain”。同时核对 recordId，确认读到的是自己的那一条。
 quiz:
-  question: 想确认“内容”字段是否必填，首先应该读哪一个接口？
-  options: [读取一条记录, 读取对象的 describe, 查看安装操作是否成功]
+  question: 想知道“内容”是不是必填字段，应该查什么？
+  options: [某一条便签的内容, 对象的 describe, 应用包安装成功提示]
   answer: 1
   explanations:
-    - 记录告诉你这一次保存了什么，不提供完整的字段必填合同。
-    - 正确。describe 提供当前有效字段和访问能力；还要核对目标租户与当前身份。
-    - 安装成功说明某版本已生效，不能代替读取当前有效字段定义。
+    - 一条记录只显示这次填了什么，不能说明字段是否允许为空。
+    - 在 describe.fields 中找到 content__c，再看 required。
+    - 安装提示没有列出字段规则，需要读取对象说明。
 ---
 # B2 · 找到并读懂接口
 
-目标是自己找到一个能用的接口。你已经知道记录属于哪个对象，现在要读回它。**先用业务问题选资料，再看方法和参数。**
+B1 已经调用了两个接口。这一课学习怎样自己找到它们：**先确定要做的事，再看请求方法、参数和返回结果。**
 
-## 从一个问题找到正确入口
+## 把“读取我的便签”翻译成一个请求
 
-导航中的[接口文档](/reference/)是总入口。对于“读取一条便签”，先进入[HTTP 记录与元数据](/reference/http)，在“单条记录”中找到：
+在[HTTP 速查的单条记录表](/reference/http#单条记录)中，读取操作是：
 
 ```http
 GET /api/data/v1/entities/{entityCode}/records/{recordId}
-Authorization: Bearer 当前登录会话
 ```
 
-花括号是合同里的路径参数，不应原样发送。本课的 `entityCode` 是 `xrainlearn__note__c`；`recordId` 必须取自你的创建响应。该 GET 请求没有 JSON 请求体。
+花括号表示需要替换的部分：
+
+| 路径参数 | 本课填什么 |
+|---|---|
+| `entityCode` | `xrainlearn__note__c`，便签对象的 API 名 |
+| `recordId` | G0 中你保存的记录编号 |
+
+沿用 B1 的终端变量，完整请求就是：
+
+```powershell
+$record = Invoke-RestMethod -Uri "$base/api/data/v1/entities/xrainlearn__note__c/records/$($note.recordId)" -Headers $headers
+$record.values.content__c
+```
+
+`$base` 是平台地址，`$headers` 携带登录凭据。这个 GET 请求没有请求正文。
 
 <FlowSteps />
 
-## 读接口时，逐项找到这七件事
+## 怎样找到响应里的数据
 
-| 要读的内容 | 读取便签时的判断 |
-|---|---|
-| 目的 | 按身份读取一条记录 |
-| 方法与路径 | `GET`，对象路径加真实 `recordId` |
-| 身份与租户 | 当前会话所属租户，具备相应对象、字段及记录访问资格 |
-| 输入 | 路径参数；没有业务 JSON body |
-| 成功 | `200`；正文是记录对象，数据在 `values` 中 |
-| 失败 | 如 `401`、`403`、`404`；读取正文中的实际错误信息 |
-| 副作用 | 此读取不创建、不修改记录 |
-
-下面是**结构示意**，省略了时刻及系统字段；`recordId` 的文字说明不是可发送的真实 ID：
+下面是响应的简化示例。为方便阅读，编号写成说明文字：
 
 ```json
 {
-  "recordId": "创建请求实际返回的记录ID",
+  "recordId": "你的记录编号",
   "entityCode": "xrainlearn__note__c",
-  "values": { "content__c": "你好，XRain" }
+  "values": {
+    "content__c": "你好，XRain"
+  }
 }
 ```
 
-不要为所有 HTTP 接口统一补一层 `data`。记录 API 返回记录对象，计数可以直接返回数字，删除成功为 `204` 且没有正文。分别按合同处理。
+读到内容的路径是 `values.content__c`。没有额外的 `data` 层，所以不能写成 `data.values.content__c`。
 
-## 哪份资料回答哪个问题
+**不同接口的返回结构可能不同。** 记录读取返回对象，计数接口返回数字，删除成功时没有正文。查文档时先找到“成功返回”这一项。
 
-| 资料 | 用它回答 | 不能从中推出 |
-|---|---|---|
-| HTTP 文档 | 发什么请求、怎样解释响应 | 当前租户一定装了此对象 |
-| 当前对象 `describe` | 有效字段、访问能力、呈现 | 全平台所有接口 |
-| 目标在线 API 目录 | 已登记接口的准入与调用信息 | 所有业务模块都已纳入目录 |
-| CLI `--help` | 当前命令支持哪些参数 | HTTP 返回一定等于 CLI 输出 |
-| SDK 导出与类型 | 已安装版本的方法与参数 | 可直接导入库的内部文件 |
-| 应用包编写合同 | `kind/values` 等定义格式 | 可把包中的 values 直接当管理 HTTP DTO |
+## 看接口文档时，回答五个问题
 
-这些资料都能从[接口文档](/reference/)和[资料总索引](/reference/sources)进入。初学者要会选资料，不需要背诵全部路由。
+| 问题 | 本例的答案 |
+|---|---|
+| 用什么方法和路径？ | GET，路径里带对象 API 名和 recordId |
+| 参数放在哪里？ | 本例放在路径里，没有 JSON 正文 |
+| 需要什么权限？ | 当前用户有这条便签及内容字段的读取权限 |
+| 成功后返回什么？ | 200，记录对象，文字在 values.content__c |
+| 失败怎么看？ | 先看状态码，再看错误码和消息 |
+
+创建、更新、删除还要多确认一件事：**请求会改变什么数据**。本页的 GET 只读取，不修改便签。
+
+## 去哪份文档查
+
+| 你要解决的问题 | 查阅位置 |
+|---|---|
+| 请求怎样写、返回怎样读 | [HTTP 速查](/reference/http) |
+| 当前对象有哪些字段、我能改哪些字段 | 对象的 `describe` |
+| CLI 命令支持什么参数 | 对应命令的 `--help` |
+| 程序中有哪些可用方法 | 当前 SDK 的公开类型与文档 |
+| 应用包的 JSON 怎样写 | [应用包说明](/reference/tools#构建导入与安装) |
+
+更多入口集中在[接口文档](/reference/)。不需要先读完整个平台的接口清单。
 
 ## 自己做一次
 
-现在提出一个本节没有直接给出完整请求的问题：**只查内容等于“你好，XRain”的便签，最多取 10 条，同时知道命中总数。**
+需求：查找内容为“你好，XRain”的便签，每页最多显示 10 条，并返回匹配总数。
 
-1. 在接口文档中找到记录查询入口。
-2. 确定用 GET 还是 POST、字段名应该写在哪里、是否需要请求体。
-3. 在查询能力说明中确认文本是否支持 `eq`。
-4. 写下预期的 `records` 和 `totalCount` 含义，再到下一节执行。
+打开 [HTTP 查询示例](/reference/http#查询与统计)，找出请求方法、`filter`、`pageSize` 和 `includeTotalCount`。先自己回答，再展开答案。
 
-完成标准：独立指出接口、身份、请求与返回，不借助“帮我生成全部代码”的提示直接跳过阅读。
+::: details 对照答案
+- 方法是 POST，因为要在请求正文中发送查询条件。
+- `filter` 是 `{ "field": "content__c", "op": "eq", "value": "你好，XRain" }`。
+- `pageSize` 为 `10`，`includeTotalCount` 为 `true`。
+- `records` 是这一页的数据，`totalCount` 是符合条件且你有权查看的总条数。
+
+下一节会实际执行修改和查询。
+:::
 
 <QuizCard />

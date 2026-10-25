@@ -3,37 +3,41 @@ title: 查询、视图与数据维护
 ---
 # 查询、视图与数据维护
 
-适合已经完成 B1—B5、开始处理列表、统计和协作的人。每个小例子独立选择，不需要把全部能力加入便签。
-
-**第一次只做分页与汇总：** 先由维护者准备下面的专题包和三条合成数据，再执行“当前页、总数与汇总”的请求。能解释“本页 1 条、总共 3 条、总额 60.90”就可以停下。视图、分享、批量修改和恢复按实际需要另选，不要求一次做完。
+这一页从三笔支出开始，理解**当前页、总条数和金额合计**。完成 B1—B5 后即可学习；视图、分享和批量操作放在后半页，按需要选择。
 
 ## 先准备独立的专题数据
 
-下载完整[专题包源码 topics-source.json](/downloads/topics-source.json)、[三条合成账目 topics-values.json](/downloads/topics-values.json)和[分页汇总请求 topics-query.json](/downloads/topics-query.json)。这组样例使用独立命名空间 `xrainlab`，不修改基础便签。
+基础便签只有文本字段。这个练习使用另一个教学应用 `xrainlab`，其中的账目对象 `xrainlab__entry__c` 有标题、金额和分类。
 
-由环境维护者按[包操作说明](/reference/tools#构建导入与安装)构建、导入并安装专题包 `1.0.1`。使用本页源码的 packageId/versionId；两个列表视图的 ownerId 绑定分别为 `00m0a9a44270c7f506e7/ownerId` 和 `00md1193c752cd639ddf/ownerId`，取既有维护者的真实用户 ID。初装按[专题包的影响确认](/reference/tools#专题包的影响确认)审阅分享、事件与编排源码，不能套用基础便签中固定的视图 ID。
+| 标题 | 金额 | 分类 |
+|---|---|---|
+| 课程账目：办公用品 | 10.20 | 工作 |
+| 课程账目：午餐 | 20.30 | 生活 |
+| 课程账目：打车 | 30.40 | 生活 |
 
-| 定义 | 本次要认识什么 |
-|---|---|
-| `xrainlab__entry__c` | `title__c` 为必填 Text；`amount__c` 为必填 Money，精度 18、小数 2 位 |
-| `category__c` | Picklist，保存 `work/life`，显示“工作/生活” |
-| `categoryRef__c` | Lookup，关联 `xrainlab__category__c` 的真实记录 ID |
-| `xrainlab__category__c` | 独立分类对象，`name__c` 为必填 Text |
-| `xrainlabBeforeCheck` | 提交前拒绝演示使用的编排；包内没有自动启用的 Trigger |
+下载[三笔账目](/downloads/topics-values.json)和[查询请求](/downloads/topics-query.json)。平台中应已经准备好专题包和这些数据，登录账号也应有读取权限。
 
-维护者只给练习人物所需的专题对象与字段权限。分享对照人物还需对象 Read 和相应字段 Read，但不因此获得其他业务对象权限。先从 describe 确认字段、写入资格和已安装版本，再做下面的练习。
+::: details 维护者：安装专题包并准备数据
+使用完整[专题包源码](/downloads/topics-source.json)，按[包操作说明](/reference/tools#构建导入与安装)构建、导入并安装 1.0.1。
 
-三条合成账目的创建入口是 `POST /api/data/v1/entities/xrainlab__entry__c/records:batchCreate`，请求正文使用下载的 `topics-values.json`。创建前先用 `topics-query.json` 查询：没有样例时创建一次；已有三条时逐条核对并复用；数量或值不符时先定位，不能自动补写或覆盖共享数据。保存创建返回的真实 recordId。Lookup 练习另在分类对象创建自己的分类，再把返回 ID 写入账目的 `categoryRef__c`，不把分类标签当作 ID。
+两个列表视图的 ownerId 绑定分别是 `00m0a9a44270c7f506e7/ownerId` 和 `00md1193c752cd639ddf/ownerId`，值取维护者的实际 userId。初装前按[专题包的影响确认](/reference/tools#专题包的影响确认)检查分享、事件与编排配置。
 
-## 当前页、总数与汇总
+先执行下载的查询。如果没有这些账目，用 `POST /api/data/v1/entities/xrainlab__entry__c/records:batchCreate` 提交下载的 topics-values.json；已存在时核对并复用。不要重复创建或覆盖不一致的数据。
 
-想象三条合成记录的金额分别是 `"10.20"`、`"20.30"`、`"30.40"`。当 `pageSize=1` 时，页面只显示一条；总数应为 3，完整筛选范围的合计应为 `"60.90"`。
+金额字段 `amount__c` 是 Money，精度 18、小数 2 位；`category__c` 保存 `work/life`。分类对象是 `xrainlab__category__c`，通过 Lookup 字段 `categoryRef__c` 关联。给学员配置这两个对象及所需字段的权限。
 
-这个例子说明：页面当前一条数据的金额不能代表全范围汇总。`query.aggregates` 使用 `{field,function,alias}`，按实际字段类型支持 `count/sum/avg/min/max`。金额结果保持精确字符串，不能在显示前先转成会丢精度的数值。
+包内还有用于提交前拒绝演示的编排，但没有自动启用的 Trigger。
+:::
 
-本课便签没有金额字段。要动手时使用独立的金额练习对象，先核对字段和三条合成数据，再同时比较 `records`、`totalCount` 和 `aggregates`。不向便签的 Text 字段发送 Money 请求。
+## 当前页、总数与汇总 {#当前页总数与汇总}
 
-沿用已核对的 `$base` 和 `$headers`，原样执行下载的查询请求：
+每页只显示 1 条时，预期是：
+
+- **这一页有 1 条**：`records.Count = 1`。
+- **符合条件的共有 3 条**：`totalCount = 3`。
+- **三笔金额合计 60.90**：`totalAmount = "60.90"`。
+
+沿用 B1 的 `$base`、`$headers`，在下载文件所在目录运行：
 
 ```powershell
 $summary = Invoke-RestMethod -Uri "$base/api/data/v1/entities/xrainlab__entry__c/records:query" -Method Post -Headers $headers -ContentType 'application/json' -InFile './topics-query.json'
@@ -42,53 +46,77 @@ $summary.totalCount
 $summary.aggregates | Select-Object alias, value
 ```
 
-预期分别是 `1`、`3` 和 `totalAmount="60.90"`。相同筛选下的 `count` 为 JSON 数字 `3`；`distinct` 查询 `category__c` 应得到 `work/life` 两种值。用一个准确 title 查询 `single` 得到同一记录；让它匹配三条时应拒绝；`singleOrDefault` 查询明确不存在的 title 时返回 JSON null。
+打开 topics-query.json，可以找到：
 
-## 用最小问题选择查询
+| 配置 | 作用 |
+|---|---|
+| `pageSize: 1` | 每页取 1 条 |
+| `includeTotalCount: true` | 返回总条数 |
+| `aggregates` 中的 `sum` | 对符合筛选条件的金额求和 |
+| `alias: "totalAmount"` | 给这项合计起一个返回名称 |
 
-| 问题 | 合适入口 | 应检查 |
+**合计按完整筛选结果计算，不只计算当前页。** 金额通过字符串传输，以保留十进制精度。
+
+试着把 pageSize 改成 2。应该只有当前页条数改变；总条数仍为 3，合计仍为 60.90。
+
+## 按问题选择查询方式
+
+| 你想知道什么 | 使用什么 | 本例的结果 |
 |---|---|---|
-| 列表的一页是什么 | `query` | 页码、字段、筛选与稳定排序 |
-| 一共有多少条 | `count` | 返回是数字，不是 `{count}` |
-| 某字段组合有哪些不同值 | `distinct` | 只按 fields 与可选 filter 合同，不附带分页参数 |
-| 必须正好一条 | `single` | 多于一条也是错误，不静默取第一条 |
-| 没有匹配时允许为空 | `firstOrDefault` / `singleOrDefault` | 返回可能为 JSON null |
-| 同时读取几个条件 | `queryBatch` | 最多 8 个查询，逐项检查对应结果 |
+| 一共有几笔？ | `count` | 数字 `3` |
+| 用到了哪些分类？ | `distinct` | `work`、`life` |
+| 必须只有一条匹配记录 | `single` | 用完整标题查一笔；匹配多条会报错 |
+| 最多一条，没有时可以为空 | `singleOrDefault` | 无匹配时返回 JSON `null` |
+| 只取第一条，没有时可以为空 | `firstOrDefault` | 第一条或 `null` |
+| 同时发送几组查询 | `queryBatch` | 最多 8 组，分别返回结果 |
 
-`RuntimeRecordQuery` 没有通用 SQL `groupBy`。需要分组统计时，按已知条件分别聚合或使用已有报表能力；不要把当前几页数据拼起来冒充全量统计。
+`distinct` 使用字段与筛选参数，不带分页参数。当前查询接口没有通用 SQL `groupBy`；分组统计可以按不同条件分别汇总，或使用已有报表功能。
 
-## 视图告诉页面怎样显示
+## 视图：改变显示方式，保留原数据 {#视图改变显示方式保留原数据}
 
-视图可以保存列、筛选、排序及部分呈现设置。它不会增加用户的数据权限。客户端要读取当前 views 和 `metadataRevision`；需要应用视图呈现时，再按实际合同提交 `presentation`，不能假设每次普通 query 都自动套用所有样式。
+视图保存要显示的列、筛选和排序。例如把账目列表从“标题、金额、分类”改成只显示“标题”，原记录的金额并不会消失。
 
-最小练习：在一个获准的个人视图中只改变显示列，比较记录本身是否改变。再检查此视图的访问资格。成功条件是解释“我看到的列变了”，而不是声称数据库结构或记录值也改了。
+可以在自己的个人视图中试一次：修改显示列，再通过记录接口读取同一条账目，确认金额仍在。
 
-视图写入前读取最新 `metadataRevision`，通过 `If-Match: "metadata-<本次实际修订>"` 保护修改。若随后出现 `503 / runtime_metadata_not_ready`，先保留该返回并按[元数据未就绪](/help/errors#元数据未就绪)检查，不反复创建视图或记录。本次目标的安装检查恢复读取后，已验证列变为 `title__c`、原记录值不变，另一个人物看不到该个人视图。
+维护视图时先读取最新 `metadataRevision`，用 `If-Match: "metadata-本次修订号"` 提交。开发页面时，需要按接口说明读取 views，并在需要时提交 `presentation`，才能应用视图的显示设置。
 
-## 批量请求有清楚的边界
+视图不会增加数据权限。修改后若出现 `503 / runtime_metadata_not_ready`，按[对应排错步骤](/help/errors#元数据未就绪)处理。
 
-普通对象同一次批量写入在同一租户事务中处理，一项失败会使该批失败。拆成多个 HTTP 请求之后，它们分别提交；已经发生的外部 HTTP 或消息投递也不随本地事务回滚。
+## 批量修改：一个请求中的记录一起成功或失败 {#批量修改一个请求中的记录一起成功或失败}
 
-练习时只用两条自己创建的合成记录：先提供都匹配的旧值条件，再让其中一条条件失配，观察同一批是否保持原值。超时先读结果，不把整批自动重放。Owner 变更使用专门动作，不塞进普通 values。
+以两条普通账目为例：在同一个批量更新请求中，一条旧值条件匹配，另一条不匹配，整批更新会失败，两条都保留原值。
+
+这项保证只覆盖**同一租户内、同一次普通记录批量写入的事务**。拆成两个请求后，它们分别提交；已经发出的外部 HTTP 请求或消息也不会随数据库事务撤回。
+
+练习只用自己创建的两条测试记录，比较提交前后的值。Owner 变更使用专门接口，不放进普通 `values`。
 
 ## 记录归属与分享
 
-Owner 是记录归属，不自动等于负责人或创建人。共享规则和人工分享控制记录范围，接收人还需要相应对象与字段资格。
+假设你有一条账目，希望同事也能查看。分享解决的是“同事能否查看这一条”；同事仍需该对象和字段的读取权限。
 
-最小分享练习需要两个已准备的固定人物和一条合成记录：先读分享 capability 与候选，再按既有授权选择接收人。分别以两个人物正常登录读取；撤销后复测，并检查其他共享来源是否仍允许访问。不要通过在请求体中换 userId 来模拟另一个人的认证。
+一次完整练习是：
 
-对应读取入口位于记录路径的 `/shares/capability`、`/shares/recipients`、`/shares/eligibility` 与 `/shares`。它们各有 DTO，不能统一解析成一个 `allowed` 布尔值。
+1. 用已有的两名测试用户，确认分享前第二人不能读取这条记录。
+2. 查询可分享操作和接收人，分享给第二人。
+3. 第二人正常登录，读取同一 recordId。
+4. 撤销分享，第二人再次读取，检查访问是否被收回。
+
+查询入口是记录路径下的 `/shares/capability`、`/shares/recipients`、`/shares/eligibility` 和 `/shares`，各自的参数与返回见[专题资料](/reference/sources#专题资料)。
+
+若撤销后仍能访问，检查是否还有其他角色或共享规则允许访问。记录 Owner、业务负责人和创建人可能是不同的人。
 
 ## 历史、敏感值与恢复 {#历史敏感值与恢复}
 
-修改记录后，可按 `/history?page=1&pageSize=20` 查对应变化。敏感字段的普通响应可能已经脱敏；需要原值时用明确的 `original-values` 合同和合法权限，不能用星号占位值作为并发旧值条件。
+- **查修改历史**：在记录路径后使用 `/history?page=1&pageSize=20`。
+- **读取敏感原值**：需要对应权限及 `original-values` 接口。普通响应中的星号可能是脱敏结果，不能拿来作为 `expectedValues`。
+- **恢复软删除记录**：使用回收站恢复功能。新建一条相同文字的记录会得到另一个 ID，不能代替恢复。
 
-软删除后的恢复通过回收站与相应资格处理。它不是再创建一条相似文字，也不是恢复一个应用包版本。最小练习只操作自己创建、明确标注用途的教学记录。
+删除和恢复练习使用单独创建、标明用途的测试记录，不删除后续课程还要用的便签。
 
-## 导出与附件不同
+## 导出：先确认拿到了多少条 {#导出先确认拿到了多少条}
 
-记录 `:export` 还检查导出权限，返回的是当前页 JSON。生成 CSV/XLSX 属于消费端后续处理，每页继续保留授权与脱敏。浏览器列表上出现一个“导出”按钮，并不能证明你已经获得全量数据。
+`:export` 返回当前页 JSON，并检查导出权限。要生成 CSV 或 Excel，由调用它的程序继续处理。
 
-自己的检查题：当分页期间其他人又修改了记录，怎样避免把一次动态读取声称为冻结的业务快照？先回答这个问题，再决定是否需要明确报表批次或已有快照能力。
+如果每页 10 条、共 23 条，只导出第一页就只有 10 条。分页期间数据还可能变化；需要固定某一时点的报表时，应使用明确支持快照或固定批次的方案。
 
-深入资料：[数据操作、元数据、组织协作和生命周期](/reference/sources#专题资料)。
+详细参数见[数据操作与维护资料](/reference/sources#专题资料)。

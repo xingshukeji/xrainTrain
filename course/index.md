@@ -4,7 +4,7 @@ title: 从一条便签开始
 hero:
   name: XRain 学习课
   text: 用一条便签，<br>理解低代码。
-  tagline: 面向会编程的初学者。先在页面保存一条便签，再理解字段、接口、权限与应用版本。
+  tagline: 面向会编程、第一次接触 XRain 的同事。从保存一条数据开始，学习字段、接口、权限和应用版本。
   actions:
     - theme: brand
       text: 开始第一条便签 →
@@ -13,36 +13,34 @@ hero:
       text: 先看平台操作视频
       link: /platform-tour
 features:
-  - title: 先做成，再理解
-    details: 一条便签贯穿基础课。每次只改变一个变量，保存后回读，看到自己的结果。
+  - title: 一次学会一件事
+    details: 同一条便签贯穿基础课。从填写、保存到查询和修改，每一步都有预期结果。
     link: /start
     linkText: 开始第一课
-  - title: 过程看得见
-    details: 真实录屏演示保存便签、创建自定义权限、配置权限集与角色。支持暂停和按章节复看。
+  - title: 跟着实际页面看
+    details: 真实录屏演示便签操作、自定义权限、权限集和角色配置。可暂停，也可按章节查看。
     link: /platform-tour
-    linkText: 看 8 分钟操作实录
-  - title: 遇到问题，有处可查
-    details: 按问题查接口、能力和错误。学会判断该读哪份文档，再独立完成一次修改。
+    linkText: 看 8 分钟操作视频
+  - title: 用到时查得到
+    details: 忘了参数查接口，遇到错误查原因，准备新功能时按需求选择专题。
     link: /reference/
     linkText: 打开接口文档
 ---
 
 <div class="home-after">
 
-## 一条清楚的学习路线
+## 从这里开始
 
-**做出便签 → 理解模型 → 查阅接口 → 读写数据 → 字段与权限 → 版本与排错**
+**保存便签 → 理解对象和字段 → 调用接口 → 修改与查询 → 配置权限 → 升级与排错**
 
-基础课共 8 个单元，建议分两次完成。第一课只需要浏览器；B1 开始使用 PowerShell 与接口。网页阅读、视频和答题无需登录；真实平台实操需要已准备的测试租户与获授权身份。没有环境时可以先看视频、图解，并使用明确标识的网页模拟。
+基础课共 8 节。G0 只需浏览器，B1 开始使用 PowerShell 调用接口。真实操作需要维护者准备测试环境；没有环境也能先看视频、阅读和答题。
 
 <div class="callout-line">
 
-第一次来，从 [我的第一条便签](/start) 开始。已经学过一部分，打开 [学习记录](/progress) 继续。要解决一个具体问题，直接使用搜索或 [能力地图](/map)。
+第一次学习，从 [G0](/start) 开始。接着上次继续，打开 [学习记录](/progress)。有具体问题，查 [能力地图](/map) 或使用搜索。
 
 </div>
 
-课程包含完整的最小样例、常用 HTTP 合同和后续能力入口。平台内部实现不属于前置知识；高级能力按实际问题选学。
-
-[准备实操环境](/help/environment) · [资料范围与适用版本](/reference/sources) · [获取课程源码](https://github.com/xingshukeji/xrainTrain)
+[准备实操环境](/help/environment) · [资料与适用版本](/reference/sources) · [课程源码](https://github.com/xingshukeji/xrainTrain)
 
 </div>

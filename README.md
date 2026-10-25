@@ -1,6 +1,6 @@
 # XRain 学习课
 
-从一个对象、一个文本字段、一条便签开始的独立低代码自学课程。包括 G0 与 B1—B7、23 类能力地图、接口资料入口、五个按需专题、真实操作视频、SVG 图解、判断题和浏览器本地学习记录。
+从一个对象、一个文本字段、一条便签开始的独立低代码自学课程。包括 G0 与 B1—B7、按开发问题组织的能力地图、接口资料入口、五个按需专题、真实操作视频、SVG 图解、判断题和浏览器本地学习记录。
 
 [在线课程](https://xingshukeji.github.io/xrainTrain/) · [完整源码](https://github.com/xingshukeji/xrainTrain) · [课程设计](internal/设计方案.md) · [覆盖地图](internal/能力与接口学习地图.md)
 
@@ -27,7 +27,7 @@ pnpm docs:build
 pnpm docs:preview
 ```
 
-`docs:check` 检查正文、引用、基础单元与最小样例。`test` 检查学习记录的恢复和隔离。构建先复制本仓 examples 到公开下载目录，再生成 `.vitepress/dist`，不读取业务配置。预览地址同上；本地开发与预览不要同时占用同一端口。
+`docs:check` 检查正文、引用、课程标题与导航、已明确淘汰的教学用语和最小样例。`test` 检查学习记录的恢复和隔离。构建先复制本仓 examples 到公开下载目录，再生成 `.vitepress/dist`，不读取业务配置。预览地址同上；本地开发与预览不要同时占用同一端口。
 
 正文位于 `course/`，组件与站点配置位于 `.vitepress/`，可编辑 SVG 在 `course/public/diagrams/`；分步图的数据随所在课程正文维护。`examples/` 持有完整练习源码。`internal/` 不进入网站，但其已提交文件随公开仓库公开。
 

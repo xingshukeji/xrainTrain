@@ -22,6 +22,6 @@ function submit() {
       <label v-for="(option, i) in quiz.options" :key="i" :class="{ picked: selected === i }"><input v-model="selected" type="radio" :name="id" :value="i" @change="submitted = false" />{{ option }}</label>
     </fieldset>
     <button class="primary-button" type="button" :disabled="selected === null" @click="submit">检查答案</button>
-    <div v-if="submitted" class="quiz-feedback" aria-live="polite"><strong>{{ selected === quiz.answer ? '答对了。' : '再想一步。' }}</strong> {{ quiz.explanations[selected] }}</div>
+    <div v-if="submitted" class="quiz-feedback" aria-live="polite"><strong>{{ selected === quiz.answer ? '答对了。' : '再想想。' }}</strong> {{ quiz.explanations[selected] }}</div>
   </section>
 </template>

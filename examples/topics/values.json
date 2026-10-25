@@ -1,7 +1,7 @@
 {
   "records": [
-    { "values": { "title__c": "课程合成账目1", "amount__c": "10.20", "category__c": "work" } },
-    { "values": { "title__c": "课程合成账目2", "amount__c": "20.30", "category__c": "life" } },
-    { "values": { "title__c": "课程合成账目3", "amount__c": "30.40", "category__c": "life" } }
+    { "values": { "title__c": "课程账目：办公用品", "amount__c": "10.20", "category__c": "work" } },
+    { "values": { "title__c": "课程账目：午餐", "amount__c": "20.30", "category__c": "life" } },
+    { "values": { "title__c": "课程账目：打车", "amount__c": "30.40", "category__c": "life" } }
   ]
 }

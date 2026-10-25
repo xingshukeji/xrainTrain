@@ -5,6 +5,11 @@ import { lessons } from '../theme/course-data.mjs'
 const root = fileURLToPath(new URL('../../', import.meta.url))
 const course = join(root, 'course')
 const issues = []
+function checkLearnerWording(text, label) {
+  const visible = text.replace(/\{#[^}]+\}/g, '')
+  const jargon = visible.match(/回读|有效定义|页面消费者|(?:接口|请求|返回|输入输出|字段)合同|(?:访问|执行|读写|对象|字段|助手|管理|操作)资格/g)
+  if (jargon) issues.push(`${label}: 请改为学员常用说法：${[...new Set(jargon)].join('、')}`)
+}
 async function walk(dir) {
   return (await Promise.all((await readdir(dir, {withFileTypes:true})).map(entry => entry.isDirectory() ? walk(join(dir,entry.name)) : join(dir,entry.name)))).flat()
 }
@@ -17,6 +22,7 @@ for (const file of files.filter(f => f.endsWith('.md'))) {
   if ((text.match(/^```/gm)||[]).length % 2) issues.push(`${label}: 代码围栏未闭合`)
   if (/(?:D:\\github\.com|C:\\Users\\HP|ANBANG_FUNCTION_AUTH_PASSWORD|xrain-central\.test)/i.test(text)) issues.push(`${label}: 含本机或测试环境私有配置`)
   const prose = text.replace(/^```[^\n]*\n[\s\S]*?^```\s*$/gm,'')
+  checkLearnerWording(prose, label)
   for (const match of prose.matchAll(/!?\[[^\]\n]*\]\(([^\s)]+)(?:\s+"[^"]*")?\)/g)) {
     const href = match[1]
     if (/^(?:https?:|mailto:|#)/.test(href)) continue
@@ -32,9 +38,13 @@ for (const lesson of lessons) {
   if (!(await exists(file))) { issues.push(`课程缺页: ${lesson.id}`); continue }
   const text = await readFile(file,'utf8')
   if (!text.includes(`lesson: ${lesson.id}`) || !text.includes('## 自己做一次') || !text.includes('<QuizCard />')) issues.push(`课程不完整: ${lesson.id}`)
+  const lines = text.split(/\r?\n/)
+  if (!lines.includes(`title: ${lesson.title}`) || !lines.includes(`# ${lesson.title}`)) issues.push(`课程标题与导航不一致: ${lesson.id}`)
+  checkLearnerWording(`${lesson.title} ${lesson.outcome}`, `课程导航 ${lesson.id}`)
 }
 for (const file of files.filter(f=>f.endsWith('.svg') && f.includes(`${join('public','diagrams')}`))) {
   const svg=await readFile(file,'utf8')
+  checkLearnerWording(svg, relative(root,file))
   if(!/<title\b/.test(svg)||!/<desc\b/.test(svg)||!/<svg[^>]*viewBox=/.test(svg)) issues.push(`${relative(root,file)}: 缺少 SVG 可访问说明或 viewBox`)
 }
 const first = JSON.parse(await readFile(join(root,'examples/note/source.json'),'utf8'))
