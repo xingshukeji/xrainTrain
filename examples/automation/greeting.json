@@ -1,0 +1,7 @@
+{
+  "source": "function execute(ctx) { return { message: '你好，' + ctx.input.name }; }",
+  "input": { "name": "学习者" },
+  "inputFields": [
+    { "name": "name", "label": "称呼", "type": "string", "required": true, "example": "学习者" }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "page": 1,
+  "pageSize": 10,
+  "fields": ["content__c"],
+  "filter": { "field": "content__c", "op": "eq", "value": "你好，XRain" },
+  "includeTotalCount": true
+}

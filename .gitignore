@@ -1,0 +1,9 @@
+node_modules/
+.vitepress/cache/
+.vitepress/dist/
+course/public/downloads/
+course/public/version.json
+.local/
+*.local.json
+*.log
+.DS_Store

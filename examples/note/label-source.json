@@ -1,0 +1,42 @@
+{
+  "packageId": "apgc5deec239e1d8b0ba",
+  "namespace": "xrainlearn",
+  "label": "XRain 学习便签",
+  "versionId": "apv8caf3663c6e2390be",
+  "version": "1.0.1",
+  "records": [
+    {
+      "id": "0044b9a2d478d15160b4",
+      "kind": "BizObject",
+      "values": {
+        "keyPrefix": "1tn",
+        "label": "学习便签",
+        "entityApiName": "xrainlearn__note__c"
+      }
+    },
+    {
+      "id": "005f1794cd5ff2e6f099",
+      "kind": "BizField",
+      "values": {
+        "entityDefinitionId": "0044b9a2d478d15160b4",
+        "label": "便签内容",
+        "fieldApiName": "content__c",
+        "type": "Text",
+        "nullable": false,
+        "length": 200,
+        "searchable": true,
+        "sortable": true
+      }
+    },
+    {
+      "id": "00m1fd16fb40de2b0a3b",
+      "kind": "BizListView",
+      "values": {
+        "label": "学习便签",
+        "name": "xrainlearnNotes",
+        "refObjectId": "0044b9a2d478d15160b4",
+        "fieldNames": ["content__c"]
+      }
+    }
+  ]
+}

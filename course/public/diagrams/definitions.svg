@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 680" role="img" aria-labelledby="t d">
+<title id="t">定义与记录沿不同路径变化</title><desc id="d">对象和字段定义经构建、导入及安装成为租户有效定义。有效定义约束记录请求中的字段。创建或修改请求保存具体记录值，不必重新构建定义。</desc>
+<defs><marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="none" stroke="#52675f" stroke-width="1.5"/></marker></defs>
+<rect width="380" height="680" rx="18" fill="#f4f8f5"/>
+<g font-family="system-ui,Microsoft YaHei,sans-serif" fill="#203e35">
+<text x="24" y="38" font-size="22" font-weight="700">定义决定能保存什么</text>
+<rect x="24" y="60" width="332" height="96" rx="12" fill="#fff" stroke="#a8beb3"/>
+<text x="44" y="95" font-size="21" font-weight="600">对象 + 字段</text><text x="44" y="130" font-size="18">便签 / content__c / Text</text>
+<path d="M190 160V208" stroke="#52675f" stroke-width="2" marker-end="url(#a)"/><text x="208" y="189" font-size="16">构建、导入、安装</text>
+<rect x="24" y="220" width="332" height="96" rx="12" fill="#e1f0e8" stroke="#43876a"/>
+<text x="44" y="255" font-size="21" font-weight="600">租户有效定义</text><text x="44" y="289" font-size="18">describe 返回当前字段</text>
+<path d="M190 320V400" stroke="#52675f" stroke-width="2" stroke-dasharray="5 5" marker-end="url(#a)"/><text x="210" y="353" font-size="17">约束输入</text><text x="210" y="380" font-size="17">与可写字段</text>
+<rect x="24" y="412" width="332" height="96" rx="12" fill="#fff" stroke="#a8beb3"/>
+<text x="44" y="447" font-size="21" font-weight="600">创建 / 修改请求</text><text x="44" y="481" font-size="18">values.content__c</text>
+<path d="M190 512V558" stroke="#52675f" stroke-width="2" marker-end="url(#a)"/><text x="210" y="541" font-size="18">保存具体值</text>
+<rect x="24" y="570" width="332" height="86" rx="12" fill="#fff0d8" stroke="#b79154"/>
+<text x="44" y="603" font-size="21" font-weight="600">一条便签记录</text><text x="44" y="635" font-size="19">你好，XRain</text>
+</g></svg>

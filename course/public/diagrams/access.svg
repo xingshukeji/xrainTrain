@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 656" role="img" aria-labelledby="t d">
+<title id="t">访问资格是多个独立条件</title><desc id="d">有效登录、目标租户成员、适用的应用准入、对象与字段权限、记录范围和实际执行身份分别成立。相关条件全部满足才能执行该动作；本图不表示服务器内部检查顺序。</desc>
+<rect width="380" height="656" rx="18" fill="#f4f8f5"/>
+<g font-family="system-ui,Microsoft YaHei,sans-serif" fill="#203e35">
+<text x="24" y="36" font-size="22" font-weight="700">相关条件分别成立</text><text x="24" y="64" font-size="17">下列是逻辑条件，不是检查顺序</text>
+<g fill="#fff" stroke="#a8beb3"><rect x="24" y="86" width="332" height="70" rx="10"/><rect x="24" y="168" width="332" height="70" rx="10"/><rect x="24" y="250" width="332" height="70" rx="10"/><rect x="24" y="332" width="332" height="70" rx="10"/><rect x="24" y="414" width="332" height="70" rx="10"/><rect x="24" y="496" width="332" height="70" rx="10"/></g>
+<g font-size="20" font-weight="600"><text x="42" y="114">有效登录</text><text x="42" y="196">目标租户成员</text><text x="42" y="278">适用的应用准入</text><text x="42" y="360">对象与字段权限</text><text x="42" y="442">这一条记录的范围</text><text x="42" y="524">实际执行身份</text></g>
+<g font-size="17"><text x="42" y="141">会话代表谁</text><text x="42" y="223">属于哪个租户</text><text x="42" y="305">能否进入这个应用</text><text x="42" y="387">允许哪项动作与字段</text><text x="42" y="469">Owner、分享等实际条件</text><text x="42" y="551">谁真正执行数据调用</text></g>
+<rect x="24" y="588" width="332" height="46" rx="10" fill="#e1f0e8" stroke="#43876a"/><text x="190" y="617" text-anchor="middle" font-size="18" font-weight="600">相关条件全部满足 → 允许该动作</text></g></svg>

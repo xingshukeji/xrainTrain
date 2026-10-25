@@ -1,12 +1,48 @@
-# xrainTrain
+# XRain 学习课
 
-面向初次接触 XRain 低代码的开发者的独立自学课程工程。课程从一个对象、一个字段、一条便签开始，逐步学习建模、接口、权限和排错，并用必要且准确的 SVG 说明关键流程。
+从一个对象、一个文本字段、一条便签开始的独立低代码自学课程。包括 G0 与 B1—B7、23 类能力地图、接口资料入口、五个按需专题、SVG 图解、判断题和浏览器本地学习记录。
 
-- [设计方案](internal/设计方案.md)：课程目标、独立工程、运行与发布方式、完成标准。
-- [能力与接口学习地图](internal/能力与接口学习地图.md)：基础必做、按需专题和文档查阅范围。
+[在线课程](https://xingshukeji.github.io/xrainTrain/) · [完整源码](https://github.com/xingshukeji/xrainTrain) · [课程设计](internal/设计方案.md) · [覆盖地图](internal/能力与接口学习地图.md)
 
-工程仓库为 [xingshukeji/xrainTrain](https://github.com/xingshukeji/xrainTrain)。网站按 LLMTrain 已验证的 VitePress + GitHub Actions + GitHub Pages 方式建设，后续课程更新由 `main` 推送自动发布。
+## 本地运行
 
-当前交付为设计资料。课程源码、依赖、运行命令和发布工作流尚待实现，在线课程尚未发布；实现完成后在此提供可直接执行的运行步骤和实际网址。
+使用 Node.js 22.12 以上的 22.x 或 24.x，以及 pnpm 10.18.2。只需要本仓库，不需要相邻业务源码、平台账号或业务环境配置。
 
-`internal/` 不进入课程网站，但其中已提交的文件会随公开仓库公开。资料中的相邻仓库链接仅用于作者本地核验，课程安装、构建与浏览不得依赖这些目录。
+```powershell
+git clone https://github.com/xingshukeji/xrainTrain.git
+cd xrainTrain
+npm install --global pnpm@10.18.2
+pnpm install --frozen-lockfile
+pnpm docs:dev
+```
+
+打开终端显示的 `http://127.0.0.1:4175/xrainTrain/`。停止本地服务使用 Ctrl+C。真实平台练习另按课程的“准备真实练习环境”执行；网页中的便签演示不会连接平台。
+
+## 检查与预览
+
+```powershell
+pnpm docs:check
+pnpm test
+pnpm docs:build
+pnpm docs:preview
+```
+
+`docs:check` 检查正文、引用、基础单元与最小样例。`test` 检查学习记录的恢复和隔离。构建先复制本仓 examples 到公开下载目录，再生成 `.vitepress/dist`，不读取业务配置。预览地址同上；本地开发与预览不要同时占用同一端口。
+
+正文位于 `course/`，组件与站点配置位于 `.vitepress/`，可编辑 SVG 在 `course/public/diagrams/`；分步图的数据随所在课程正文维护。`examples/` 持有完整练习源码。`internal/` 不进入网站，但其已提交文件随公开仓库公开。
+
+## GitHub Pages 发布与恢复
+
+目标固定为本仓 GitHub Pages，基址 `/xrainTrain/`。在仓库 Settings → Pages 中将 Source 设为 GitHub Actions；该设置由仓库维护者执行一次。
+
+推送 `main` 自动运行 `.github/workflows/deploy-pages.yml`。同一提交先使用锁文件安装、测试、检查和构建，再上传 Pages artifact；部署作业直接发布这一产物。通过后，在 Actions 的部署链接打开网站，并比较 `/xrainTrain/version.json` 的 commit 与该次运行的提交。刷新深层课程、尝试搜索、答题和学习记录，不能只看首页可达。
+
+首次发布前没有上一网站版本。首次失败时保留未发布状态，修正开发结果并重新核验。后续发布失败时先核对 Pages 当前 deployment，保留仍可用的版本。要恢复已知成功版本，在 Actions 中选择对应提交的成功运行，使用 Re-run jobs → Re-run all jobs；它从原提交重新构建并发布。若原运行已不可用，由维护者建立一个只恢复已确认内容的新提交，重新走同一工作流。不要从不明本地产物手工覆盖网站。
+
+本工作流使用 GitHub 提供的短期权限，不需要课程维护者保存个人 Token。业务平台凭据、原始回执、日志、缓存、依赖目录与构建输出均不提交。
+
+## 样例验证范围
+
+2026-10-25 已在获准测试目标完成便签包 1.0.0 的真实构建、导入、安装、CRUD、查询与拒绝分支，并完成 1.0.1 的标签升级及原记录保留核验；平台数据视图可见实际便签。固定输入函数也已核验。具体范围见课程“资料总索引与适用版本”。
+
+网页学习不需要 skills-hub 或 Workforce 源码权限。上游深入资料可能需要组织访问权，课程明确标注；平台源码不包含在本课程中。
