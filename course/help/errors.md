@@ -22,7 +22,7 @@ title: 按现象排错
 | 平台标签变了，应用页面没变 | 页面是否读取该标签，还是使用自己的文案 | [页面字段练习](/topics/workforce) |
 | 安装或写入超时 | 先查询原操作或已经保存的记录 | [超时处理](/topics/operations#超时后先查原操作) |
 | HTTP 200，但外部调用失败 | 返回中的 statusCode、isSuccess 和 body | [集成](/topics/integration) |
-| 接口目录或 OpenAPI 返回 500 | 保留错误，由维护者处理；用静态文档继续查阅 | [接口文档](/reference/) |
+| 接口目录或 OpenAPI 返回 500 | 记录平台地址、部署版本和错误代码，由维护者核对文档导出；临时用课程速查继续查阅 | [接口文档](/reference/) |
 | 邮件 reference 失效 | 重新搜索取得完整 reference | [个人邮箱](/topics/integration#个人邮箱是另一种身份范围) |
 
 状态码不能单独确定原因。例如 404 可能是记录不存在，也可能与访问范围有关，要结合具体错误消息判断。

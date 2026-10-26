@@ -7,7 +7,7 @@ title: 资料总索引与适用版本
 
 ## 适用范围与真实验证
 
-课程资料核对日期为 **2026-10-25**。HTTP 和业务说明对应 skills-hub `f6e10f6`，CLI 对应 `f4c4861`；Workforce 字段例子对应 `e7f17fc`，Task 读取练习需要包含 `c00c3b2` 修复的应用。
+完整 OpenAPI 文档核对日期为 **2026-10-26**，平台版本为 `0.1.0-ci.20261026.31`，来源提交为 `f1cde12`。其余 HTTP 和业务样例保留 2026-10-25 的验证范围，对应 skills-hub `f6e10f6`；CLI 对应 `f4c4861`，Workforce 字段例子对应 `e7f17fc`，Task 读取练习需要包含 `c00c3b2` 修复的应用。下方链接分别固定到对应资料版本。
 
 下面记录维护者已经验证的具体样例。其他环境升级后，按实际接口和类型检查差异。
 
@@ -15,6 +15,8 @@ title: 资料总索引与适用版本
 
 | 已核验的内容 | 本次结果 |
 |---|---|
+| 完整 OpenAPI 文档（2026-10-26） | 线上 29 个功能分组、386 个租户接口；中文搜索、直达链接刷新、页面版本和 JSON 下载通过，调用地址与实际公开入口一致；兼容对外子集保留 31 个接口 |
+| 从文档完成只读调用（2026-10-26） | 在“业务数据”查到 query-capabilities，复用已有租户登录调用返回 200，无重定向；响应含 fieldTypes、operatorSets、operators 和 limits，其中字段类型 12 项；无业务写入 |
 | 便签包 1.0.0 | 服务端构建、Host 原包导入、租户预检与安装成功 |
 | 便签记录 | 创建、重新读取、修改、筛选查询、空值拒绝和并发冲突均得到预期结果 |
 | 记录可见性 | 普通测试账号访问该教学记录被拒绝；维护者使用专门的教学对象权限 |
@@ -60,12 +62,12 @@ Task 读取结果适用于已验证的 Workforce 本机应用构建，Runtime �
 | [对象基础](https://github.com/xingshukeji/skills-hub/blob/f6e10f6385cd4bae937c632a81839c9cc4e86f1a/skills/workforce-business-development/references/object-foundation.md) | 定义、系统字段与归属 |
 | [初始化平台](https://github.com/xingshukeji/skills-hub/blob/f6e10f6385cd4bae937c632a81839c9cc4e86f1a/skills/workforce-business-development/references/initialized-platform.md) | [环境准备](/help/environment) |
 | [元数据与界面](https://github.com/xingshukeji/skills-hub/blob/f6e10f6385cd4bae937c632a81839c9cc4e86f1a/skills/workforce-business-development/references/metadata-and-ui.md) | [字段](/basics/fields)、[页面字段](/topics/workforce) |
-| [业务 API](https://github.com/xingshukeji/skills-hub/blob/f6e10f6385cd4bae937c632a81839c9cc4e86f1a/skills/workforce-business-development/references/business-api.md) | [接口文档入口](/reference/) |
+| [业务 API](https://github.com/xingshukeji/skills-hub/blob/9a8459d603f8543eceea3791b79bbd6117536fb7/skills/workforce-business-development/references/business-api.md) | [接口文档入口](/reference/) |
 | [数据操作](https://github.com/xingshukeji/skills-hub/blob/f6e10f6385cd4bae937c632a81839c9cc4e86f1a/skills/workforce-business-development/references/data-operations.md) | [B3](/basics/data)、[数据专题](/topics/data) |
 | [授权](https://github.com/xingshukeji/skills-hub/blob/f6e10f6385cd4bae937c632a81839c9cc4e86f1a/skills/workforce-business-development/references/authorization.md) | [B5 身份与权限](/basics/access) |
 | [组织与协作](https://github.com/xingshukeji/skills-hub/blob/f6e10f6385cd4bae937c632a81839c9cc4e86f1a/skills/workforce-business-development/references/organization-and-collaboration.md) | [归属与分享](/topics/data#记录归属与分享) |
 | [生命周期](https://github.com/xingshukeji/skills-hub/blob/f6e10f6385cd4bae937c632a81839c9cc4e86f1a/skills/workforce-business-development/references/lifecycle.md) | [B6](/basics/version)、[安装维护](/topics/operations) |
-| [配置与 API 身份](https://github.com/xingshukeji/skills-hub/blob/f6e10f6385cd4bae937c632a81839c9cc4e86f1a/skills/workforce-business-development/references/configuration-and-api.md) | [配置与调用身份](/topics/integration#配置与调用身份) |
+| [配置与 API 身份](https://github.com/xingshukeji/skills-hub/blob/9a8459d603f8543eceea3791b79bbd6117536fb7/skills/workforce-business-development/references/configuration-and-api.md) | [配置与调用身份](/topics/integration#配置与调用身份) |
 | [自动化](https://github.com/xingshukeji/skills-hub/blob/f6e10f6385cd4bae937c632a81839c9cc4e86f1a/skills/workforce-business-development/references/automation.md) | [函数、Trigger 与 Routine](/topics/automation) |
 | [集成](https://github.com/xingshukeji/skills-hub/blob/f6e10f6385cd4bae937c632a81839c9cc4e86f1a/skills/workforce-business-development/references/integration.md) | [HTTP 集成](/topics/integration) |
 | [地区与时间](https://github.com/xingshukeji/skills-hub/blob/f6e10f6385cd4bae937c632a81839c9cc4e86f1a/skills/workforce-business-development/references/regional-context.md) | [字段类型](/basics/fields)、[执行时间](/topics/automation#时间与执行人) |
@@ -74,7 +76,7 @@ Task 读取结果适用于已验证的 Workforce 本机应用构建，Runtime �
 | [智能体接入](https://github.com/xingshukeji/skills-hub/blob/f6e10f6385cd4bae937c632a81839c9cc4e86f1a/skills/workforce-business-development/references/agent-access.md) | [AI 使用条件](/topics/workforce) |
 | [业务实现](https://github.com/xingshukeji/skills-hub/blob/f6e10f6385cd4bae937c632a81839c9cc4e86f1a/skills/workforce-business-development/references/implementation.md) | [服务、页面与工具](/topics/workforce) |
 | [企业案例](https://github.com/xingshukeji/skills-hub/blob/f6e10f6385cd4bae937c632a81839c9cc4e86f1a/skills/workforce-business-development/references/enterprise-case.md) | 完成基础课后的业务主线扩展 |
-| [API 验证记录](https://github.com/xingshukeji/skills-hub/blob/f6e10f6385cd4bae937c632a81839c9cc4e86f1a/skills/workforce-business-development/references/api-verification.md) | 历史实测范围与接口差异 |
+| [API 验证记录](https://github.com/xingshukeji/skills-hub/blob/9a8459d603f8543eceea3791b79bbd6117536fb7/skills/workforce-business-development/references/api-verification.md) | 历史实测范围与接口差异 |
 
 ## 技能入口
 
@@ -95,7 +97,7 @@ Task 读取结果适用于已验证的 Workforce 本机应用构建，Runtime �
 - CLI 的[安装](https://github.com/xingshukeji/skills-hub/blob/f4c48613557394cb42e37ec5b93d4f3303f93299/skills/xrain-cli/references/installation.md)、[配置](https://github.com/xingshukeji/skills-hub/blob/f4c48613557394cb42e37ec5b93d4f3303f93299/skills/xrain-cli/references/configuration.md)和[命令](https://github.com/xingshukeji/skills-hub/blob/f4c48613557394cb42e37ec5b93d4f3303f93299/skills/xrain-cli/references/commands.md)按分发版本核对；本课程入口在[工具参考](/reference/tools)。
 - 上游[HTTP 请求样例](https://github.com/xingshukeji/skills-hub/blob/f6e10f6385cd4bae937c632a81839c9cc4e86f1a/skills/workforce-business-development/assets/http-contract-samples.json)用于比较数据结构，不表示能向任意目标重放全部请求。
 - 本课程完整的[基础源码](/downloads/note-source.json)、[标签升级源码](/downloads/note-label-source.json)、[创建值](/downloads/note-values.json)、[查询条件](/downloads/note-query.json)、[固定输入函数](/downloads/greeting.json)和[独立专题样例](/topics/data#先准备独立的专题数据)可以直接取得，不依赖上游仓库权限。
-- 当前目标的在线目录见[接口文档](/reference/)。历史记录曾出现部分目录和 OpenAPI 请求 500；本版没有重新验证所有目录，不宣称统一 Swagger/ReDoc 网站已可用。
+- 平台提供按功能分组的 OpenAPI 3.1 阅读页，入口和只读练习见[接口文档](/reference/)。2026-10-26 已在上述版本验证完整规范与兼容子集下载均返回 200；旧版本导出 500 的历史记录仍保留，其他环境应核对部署版本和实际下载结果。
 
 ## 维护这份课程
 
