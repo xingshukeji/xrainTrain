@@ -1,0 +1,168 @@
+<svg viewBox="0 0 981 876" lang="zh-CN" aria-labelledby="archify-diagram-title archify-diagram-description" xmlns="http://www.w3.org/2000/svg" width="981" height="876" role="img">
+  <title id="archify-diagram-title">02 · 同一个用户，可以有多条权限来源</title>
+  <desc id="archify-diagram-description">同一个用户可有多条来源；最终是否有效，还要按启停、拒绝与有效期判断。；撤销一个角色后，其他来源仍可能提供同一项权限。</desc>
+  <style>
+svg{background:#ffffff;color:#183a43}
+text{font-family:"Microsoft YaHei","Noto Sans CJK SC",sans-serif}
+.c-grid{fill:none;stroke:#edf2f4}.c-mask{fill:#ffffff}
+.t-primary{fill:#183a43}.t-muted,.t-dim{fill:#536b73}.t-security{fill:#9f3350}
+.t-edge-default,.t-edge-security{fill:#38515b;paint-order:stroke;stroke:#fff;stroke-width:5;stroke-linejoin:round}
+.c-frontend{fill:#e8f5fa;stroke:#347d94}.c-backend{fill:#edf7f1;stroke:#43916d}
+.c-database{fill:#f1edfa;stroke:#8065af}.c-security{fill:#fbeef1;stroke:#b7677a}
+.c-external{fill:#f5f8fa;stroke:#8ca2ad}.c-cloud{fill:#fff6e4;stroke:#af8c3b}
+.c-lane{fill:#f8fafb;stroke:#d6e2e7}.c-security-group{fill:#fff8f8;stroke:#e0bec8}
+.a-default,.a-security,.a-emphasis,.a-dashed{fill:none;stroke:#607c89;stroke-width:1.6}
+.a-security{stroke:#b35a71}.m-default,.m-dashed{fill:#607c89}.m-security{fill:#b35a71}.m-emphasis{fill:#398061}
+.s-security{stroke:#b35a71;fill:none}.s-backend{stroke:#398061;fill:none}.s-frontend{stroke:#347d94;fill:none}.s-database{stroke:#8065af;fill:none}.sigil-fill{fill:currentColor}
+.tree-edge{fill:none;stroke:#6b8793;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round}
+.tree-root{fill:#174c5a;stroke:none}.tree-branch{fill:#e8f3f6;stroke:#5b91a1}.tree-leaf{fill:#fff;stroke:#a6bdc6}
+.tree-hue-backend .tree-branch{fill:#eaf6ef;stroke:#4d9771}.tree-hue-database .tree-branch{fill:#f2effb;stroke:#8b74b5}
+.tree-hue-cloud .tree-branch{fill:#fff6e6;stroke:#bb9550}.tree-socket{fill:#fff;stroke:#6a96a3}
+.tree-accent{stroke:#6a96a3}.tree-hue-root .tree-label,.tree-hue-root .tree-sublabel{fill:#fff}
+</style>
+  <rect width="981.0" height="876.0" fill="#fff" />
+  <text x="28" y="38" font-size="23" font-weight="700" fill="#174c5a">02 · 同一个用户，可以有多条权限来源</text>
+  <g transform="translate(0 60)">
+    <defs>
+      <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" class="m-default" />
+      </marker>
+      <marker id="arrowhead-emphasis" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" class="m-emphasis" />
+      </marker>
+      <marker id="arrowhead-security" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" class="m-security" />
+      </marker>
+      <marker id="arrowhead-dashed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" class="m-dashed" />
+      </marker>
+      <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+        <path d="M 40 0 L 0 0 0 40" class="c-grid" stroke-width="1.2" />
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#grid)" />
+    <g>
+      <path d="M 220 224 L 310 224" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none" />
+      <path d="M 220 224 L 310 224" class="a-default" stroke-width="1.5" marker-end="url(#arrowhead)" />
+    </g>
+    <g>
+      <path d="M 504 190 L 504 100 Q 504 92 512 92 L 650 92" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none" />
+      <path d="M 504 190 L 504 100 Q 504 92 512 92 L 650 92" class="a-default" stroke-width="1.5" marker-end="url(#arrowhead)" />
+    </g>
+    <g>
+      <path d="M 520 231 L 650 231" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none" />
+      <path d="M 520 231 L 650 231" class="a-default" stroke-width="1.5" marker-end="url(#arrowhead)" />
+    </g>
+    <g>
+      <path d="M 830 74 L 904 74 Q 912 74 912 82 L 912 416 Q 912 424 904 424 L 888 424" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none" />
+      <path d="M 830 74 L 904 74 Q 912 74 912 82 L 912 416 Q 912 424 904 424 L 888 424" class="a-default" stroke-width="1.5" marker-end="url(#arrowhead)" />
+    </g>
+    <g>
+      <path d="M 740 258 L 740 390" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none" />
+      <path d="M 740 258 L 740 390" class="a-default" stroke-width="1.5" marker-end="url(#arrowhead)" />
+    </g>
+    <g>
+      <path d="M 520 424 L 650 424" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none" />
+      <path d="M 520 424 L 650 424" class="a-default" stroke-width="1.5" marker-end="url(#arrowhead)" />
+    </g>
+    <g>
+      <path d="M 769 458 L 769 580" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none" />
+      <path d="M 769 458 L 769 580" class="a-default" stroke-width="1.5" marker-end="url(#arrowhead)" />
+    </g>
+    <g id="node-catalog" aria-label="聚焦具体权限，例如：查看便签, 架构组件" aria-pressed="false">
+      <title>具体权限 · 例如：查看便签 · 架构组件</title>
+      <rect x="40" y="190" width="180" height="68" rx="8" class="c-mask" />
+      <rect x="40" y="190" width="180" height="68" rx="8" class="c-security" stroke-width="1.5" />
+      <text x="130" y="222" class="t-primary" font-size="17" font-weight="600" text-anchor="middle">具体权限</text>
+      <text x="130" y="238" class="t-muted" font-size="14" text-anchor="middle">例如：查看便签</text>
+    </g>
+    <g id="node-sets" aria-label="聚焦权限集，把多项权限放在一起, 架构组件" aria-pressed="false">
+      <title>权限集 · 把多项权限放在一起 · 架构组件</title>
+      <rect x="310" y="190" width="210" height="68" rx="8" class="c-mask" />
+      <rect x="310" y="190" width="210" height="68" rx="8" class="c-backend" stroke-width="1.5" />
+      <text x="415" y="222" class="t-primary" font-size="17" font-weight="600" text-anchor="middle">权限集</text>
+      <text x="415" y="238" class="t-muted" font-size="14" text-anchor="middle">把多项权限放在一起</text>
+    </g>
+    <g id="node-role" aria-label="聚焦角色，例如：学员, 架构组件" aria-pressed="false">
+      <title>角色 · 例如：学员 · 架构组件</title>
+      <rect x="650" y="40" width="180" height="68" rx="8" class="c-mask" />
+      <rect x="650" y="40" width="180" height="68" rx="8" class="c-backend" stroke-width="1.5" />
+      <g aria-hidden="true" class="semantic-sigil s-backend" transform="translate(656 46) scale(0.6875)">
+        <circle cx="8" cy="4.5" r="2.5" />
+        <path d="M3 14v-2a5 5 0 0 1 10 0v2" />
+      </g>
+      <text x="740" y="72" class="t-primary" font-size="17" font-weight="600" text-anchor="middle">角色</text>
+      <text x="740" y="88" class="t-muted" font-size="14" text-anchor="middle">例如：学员</text>
+    </g>
+    <g id="node-direct" aria-label="聚焦直接分配给用户，简单场景可不建角色, 架构组件" aria-pressed="false">
+      <title>直接分配给用户 · 简单场景可不建角色 · 架构组件</title>
+      <rect x="650" y="190" width="180" height="68" rx="8" class="c-mask" />
+      <rect x="650" y="190" width="180" height="68" rx="8" class="c-backend" stroke-width="1.5" />
+      <g aria-hidden="true" class="semantic-sigil s-backend" transform="translate(656 196) scale(0.6875)">
+        <circle cx="8" cy="4.5" r="2.5" />
+        <path d="M3 14v-2a5 5 0 0 1 10 0v2" />
+      </g>
+      <text x="740" y="222" class="t-primary" font-size="17" font-weight="600" text-anchor="middle">直接分配给用户</text>
+      <text x="740" y="238" class="t-muted" font-size="14" text-anchor="middle">简单场景可不建角色</text>
+    </g>
+    <g id="node-automatic" aria-label="聚焦全体员工来源，有效成员自动适用, 架构组件" aria-pressed="false">
+      <title>全体员工来源 · 有效成员自动适用 · 架构组件</title>
+      <rect x="310" y="390" width="210" height="68" rx="8" class="c-mask" />
+      <rect x="310" y="390" width="210" height="68" rx="8" class="c-backend" stroke-width="1.5" />
+      <g aria-hidden="true" class="semantic-sigil s-backend" transform="translate(316 396) scale(0.6875)">
+        <circle cx="8" cy="4.5" r="2.5" />
+        <path d="M3 14v-2a5 5 0 0 1 10 0v2" />
+      </g>
+      <text x="415" y="422" class="t-primary" font-size="17" font-weight="600" text-anchor="middle">全体员工来源</text>
+      <text x="415" y="438" class="t-muted" font-size="14" text-anchor="middle">有效成员自动适用</text>
+    </g>
+    <g id="node-evaluate" aria-label="聚焦计算这个用户的有效权限，核对启停、拒绝和有效期, 架构组件" aria-pressed="false">
+      <title>计算这个用户的有效权限 · 核对启停、拒绝和有效期 · 架构组件</title>
+      <rect x="650" y="390" width="238" height="68" rx="8" class="c-mask" />
+      <rect x="650" y="390" width="238" height="68" rx="8" class="c-security" stroke-width="1.5" />
+      <text x="769" y="422" class="t-primary" font-size="17" font-weight="600" text-anchor="middle">计算这个用户的有效权限</text>
+      <text x="769" y="438" class="t-muted" font-size="14" text-anchor="middle">核对启停、拒绝和有效期</text>
+    </g>
+    <g id="node-effective" aria-label="聚焦用户当前可用的权限，再参与具体操作的判断, 架构组件" aria-pressed="false">
+      <title>用户当前可用的权限 · 再参与具体操作的判断 · 架构组件</title>
+      <rect x="650" y="580" width="238" height="68" rx="8" class="c-mask" />
+      <rect x="650" y="580" width="238" height="68" rx="8" class="c-frontend" stroke-width="1.5" />
+      <g aria-hidden="true" class="semantic-sigil s-frontend" transform="translate(656 586) scale(0.6875)">
+        <circle cx="8" cy="4.5" r="2.5" />
+        <path d="M3 14v-2a5 5 0 0 1 10 0v2" />
+      </g>
+      <text x="769" y="612" class="t-primary" font-size="17" font-weight="600" text-anchor="middle">用户当前可用的权限</text>
+      <text x="769" y="628" class="t-muted" font-size="14" text-anchor="middle">再参与具体操作的判断</text>
+    </g>
+    <g>
+      <rect x="250" y="204" width="30" height="14" rx="3" class="c-mask" />
+      <text x="265" y="214" class="t-edge-default" font-size="17" text-anchor="middle">加入</text>
+    </g>
+    <g>
+      <rect x="548" y="72" width="58" height="14" rx="3" class="c-mask" />
+      <text x="577" y="82" class="t-edge-default" font-size="17" text-anchor="middle">关联权限集</text>
+    </g>
+    <g>
+      <rect x="560.8" y="211" width="48.4" height="14" rx="3" class="c-mask" />
+      <text x="585" y="221" class="t-edge-default" font-size="17" text-anchor="middle">直接分配</text>
+    </g>
+    <g>
+      <rect x="883" y="229" width="58" height="14" rx="3" class="c-mask" />
+      <text x="912" y="239" class="t-edge-default" font-size="17" text-anchor="middle">用户的角色</text>
+    </g>
+    <g>
+      <rect x="656.8" y="317" width="77.2" height="14" rx="3" class="c-mask" />
+      <text x="695.4" y="327" class="t-edge-default" font-size="17" text-anchor="middle">用户的直接分配</text>
+    </g>
+    <g>
+      <rect x="546.4" y="404" width="77.2" height="14" rx="3" class="c-mask" />
+      <text x="585" y="414" class="t-edge-default" font-size="17" text-anchor="middle">本租户有效成员</text>
+    </g>
+    <g>
+      <rect x="676.2" y="512" width="86.8" height="14" rx="3" class="c-mask" />
+      <text x="719.6" y="522" class="t-edge-default" font-size="17" text-anchor="middle">按同一套规则求值</text>
+    </g>
+  </g>
+  <text x="28" y="814.0" font-size="13" fill="#536b73">同一个用户可有多条来源；最终是否有效，还要按启停、拒绝与有效期判断。</text>
+  <text x="28" y="840.0" font-size="13" fill="#536b73">撤销一个角色后，其他来源仍可能提供同一项权限。</text>
+</svg>

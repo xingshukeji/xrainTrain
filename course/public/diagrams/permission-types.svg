@@ -1,0 +1,162 @@
+<svg viewBox="0 0 632 833" lang="zh-CN" aria-labelledby="archify-diagram-title archify-diagram-description" xmlns="http://www.w3.org/2000/svg" width="632" height="833" role="img">
+  <title id="archify-diagram-title">01 · 权限分类：控制什么操作</title>
+  <desc id="archify-diagram-description">按控制对象分组。角色和权限集负责分配这些权限。；记录范围另行决定可以操作哪几条记录。</desc>
+  <style>
+svg{background:#ffffff;color:#183a43}
+text{font-family:"Microsoft YaHei","Noto Sans CJK SC",sans-serif}
+.c-grid{fill:none;stroke:#edf2f4}.c-mask{fill:#ffffff}
+.t-primary{fill:#183a43}.t-muted,.t-dim{fill:#536b73}.t-security{fill:#9f3350}
+.t-edge-default,.t-edge-security{fill:#38515b;paint-order:stroke;stroke:#fff;stroke-width:5;stroke-linejoin:round}
+.c-frontend{fill:#e8f5fa;stroke:#347d94}.c-backend{fill:#edf7f1;stroke:#43916d}
+.c-database{fill:#f1edfa;stroke:#8065af}.c-security{fill:#fbeef1;stroke:#b7677a}
+.c-external{fill:#f5f8fa;stroke:#8ca2ad}.c-cloud{fill:#fff6e4;stroke:#af8c3b}
+.c-lane{fill:#f8fafb;stroke:#d6e2e7}.c-security-group{fill:#fff8f8;stroke:#e0bec8}
+.a-default,.a-security,.a-emphasis,.a-dashed{fill:none;stroke:#607c89;stroke-width:1.6}
+.a-security{stroke:#b35a71}.m-default,.m-dashed{fill:#607c89}.m-security{fill:#b35a71}.m-emphasis{fill:#398061}
+.s-security{stroke:#b35a71;fill:none}.s-backend{stroke:#398061;fill:none}.s-frontend{stroke:#347d94;fill:none}.s-database{stroke:#8065af;fill:none}.sigil-fill{fill:currentColor}
+.tree-edge{fill:none;stroke:#6b8793;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round}
+.tree-root{fill:#174c5a;stroke:none}.tree-branch{fill:#e8f3f6;stroke:#5b91a1}.tree-leaf{fill:#fff;stroke:#a6bdc6}
+.tree-hue-backend .tree-branch{fill:#eaf6ef;stroke:#4d9771}.tree-hue-database .tree-branch{fill:#f2effb;stroke:#8b74b5}
+.tree-hue-cloud .tree-branch{fill:#fff6e6;stroke:#bb9550}.tree-socket{fill:#fff;stroke:#6a96a3}
+.tree-accent{stroke:#6a96a3}.tree-hue-root .tree-label,.tree-hue-root .tree-sublabel{fill:#fff}
+</style>
+  <rect width="632.0" height="833.0" fill="#fff" />
+  <text x="28" y="38" font-size="23" font-weight="700" fill="#174c5a">01 · 权限分类：控制什么操作</text>
+  <g transform="translate(0 60)">
+    <defs>
+      <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" class="m-default" />
+      </marker>
+      <marker id="arrowhead-emphasis" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" class="m-emphasis" />
+      </marker>
+      <marker id="arrowhead-security" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" class="m-security" />
+      </marker>
+      <marker id="arrowhead-dashed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" class="m-dashed" />
+      </marker>
+      <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+        <path d="M 40 0 L 0 0 0 40" class="c-grid" stroke-width="1.2" />
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#grid)" />
+    <path d="M 176 321.5 L 182 321.5 Q 188 321.5 188 315.5 L 188 108.5 Q 188 102.5 194 102.5 L 200 102.5" class="a-default tree-edge tree-edge-trunk" stroke-width="1.8" />
+    <path d="M 176 321.5 L 182 321.5 Q 188 321.5 188 315.5 L 188 296.5 Q 188 290.5 194 290.5 L 200 290.5" class="a-default tree-edge tree-edge-trunk" stroke-width="1.8" />
+    <path d="M 176 321.5 L 182 321.5 Q 188 321.5 188 327.5 L 188 534.5 Q 188 540.5 194 540.5 L 200 540.5" class="a-default tree-edge tree-edge-trunk" stroke-width="1.8" />
+    <path d="M 349 103 L 373 103" class="a-default tree-edge tree-edge-hued tree-hue-backend" stroke-width="1.5" />
+    <path d="M 349 290.5 L 355 290.5 Q 361 290.5 361 284.5 L 361 233.5 Q 361 227.5 367 227.5 L 373 227.5" class="a-default tree-edge tree-edge-hued tree-hue-database" stroke-width="1.5" />
+    <path d="M 349 290.5 L 355 290.5 Q 361 290.5 361 296.5 L 361 346.5 Q 361 352.5 367 352.5 L 373 352.5" class="a-default tree-edge tree-edge-hued tree-hue-database" stroke-width="1.5" />
+    <path d="M 349 540.5 L 355 540.5 Q 361 540.5 361 534.5 L 361 483.5 Q 361 477.5 367 477.5 L 373 477.5" class="a-default tree-edge tree-edge-hued tree-hue-cloud" stroke-width="1.5" />
+    <path d="M 349 540.5 L 355 540.5 Q 361 540.5 361 546.5 L 361 596.5 Q 361 602.5 367 602.5 L 373 602.5" class="a-default tree-edge tree-edge-hued tree-hue-cloud" stroke-width="1.5" />
+    <g id="node-permissions" aria-label="聚焦权限，允许执行某项操作, 根节点" aria-pressed="false" class="tree-hue-root">
+      <title>权限 · 允许执行某项操作 · 根节点</title>
+      <rect x="32" y="283" width="144" height="77" rx="10" class="c-mask" />
+      <rect x="32" y="283" width="144" height="77" rx="10" class="c-frontend tree-root" stroke-width="1.2" />
+      <text x="104" class="t-primary tree-label" font-size="14.5" font-weight="750" text-anchor="middle">
+        <tspan x="104" y="325.5">权限</tspan>
+      </text>
+      <text x="104" class="t-muted tree-sublabel" font-size="12" text-anchor="middle">
+        <tspan x="104" y="344.5">允许执行某项操作</tspan>
+      </text>
+    </g>
+    <g id="node-management" aria-label="聚焦管理权限，配置与维护平台, 分支" aria-pressed="false" class="tree-hue-backend">
+      <title>管理权限 · 配置与维护平台 · 分支</title>
+      <rect x="200" y="64" width="149" height="77" rx="10" class="c-mask" />
+      <rect x="200" y="64" width="149" height="77" rx="10" class="c-backend tree-branch" stroke-width="1.2" />
+      <circle cx="200" cy="102.5" r="2.6" class="tree-socket" stroke-width="1.4" />
+      <text x="274.5" class="t-primary tree-label" font-size="14" font-weight="700" text-anchor="middle">
+        <tspan x="274.5" y="106.5">管理权限</tspan>
+      </text>
+      <text x="274.5" class="t-muted tree-sublabel" font-size="12" text-anchor="middle">
+        <tspan x="274.5" y="125.5">配置与维护平台</tspan>
+      </text>
+    </g>
+    <g id="node-data" aria-label="聚焦数据权限，读写业务数据, 分支" aria-pressed="false" class="tree-hue-database">
+      <title>数据权限 · 读写业务数据 · 分支</title>
+      <rect x="200" y="252" width="149" height="77" rx="10" class="c-mask" />
+      <rect x="200" y="252" width="149" height="77" rx="10" class="c-backend tree-branch" stroke-width="1.2" />
+      <circle cx="200" cy="290.5" r="2.6" class="tree-socket" stroke-width="1.4" />
+      <text x="274.5" class="t-primary tree-label" font-size="14" font-weight="700" text-anchor="middle">
+        <tspan x="274.5" y="294.5">数据权限</tspan>
+      </text>
+      <text x="274.5" class="t-muted tree-sublabel" font-size="12" text-anchor="middle">
+        <tspan x="274.5" y="313.5">读写业务数据</tspan>
+      </text>
+    </g>
+    <g id="node-features" aria-label="聚焦接口与功能权限，调用入口与业务动作, 分支" aria-pressed="false" class="tree-hue-cloud">
+      <title>接口与功能权限 · 调用入口与业务动作 · 分支</title>
+      <rect x="200" y="502" width="149" height="77" rx="10" class="c-mask" />
+      <rect x="200" y="502" width="149" height="77" rx="10" class="c-backend tree-branch" stroke-width="1.2" />
+      <circle cx="200" cy="540.5" r="2.6" class="tree-socket" stroke-width="1.4" />
+      <text x="274.5" class="t-primary tree-label" font-size="14" font-weight="700" text-anchor="middle">
+        <tspan x="274.5" y="544.5">接口与功能权限</tspan>
+      </text>
+      <text x="274.5" class="t-muted tree-sublabel" font-size="12" text-anchor="middle">
+        <tspan x="274.5" y="563.5">调用入口与业务动作</tspan>
+      </text>
+    </g>
+    <g id="node-manageExamples" aria-label="聚焦管理用户、角色或应用，管理能力分别授权, 叶子节点" aria-pressed="false" class="tree-hue-backend">
+      <title>管理用户、角色或应用 · 管理能力分别授权 · 叶子节点</title>
+      <rect x="373" y="64" width="215" height="77" rx="10" class="c-mask" />
+      <rect x="373" y="64" width="215" height="77" rx="10" class="c-external tree-leaf" stroke-width="1.2" />
+      <circle cx="373" cy="102.5" r="2.6" class="tree-socket" stroke-width="1.4" />
+      <text x="480.5" class="t-primary tree-label" font-size="14" font-weight="560" text-anchor="middle">
+        <tspan x="480.5" y="106.5">管理用户、角色或应用</tspan>
+      </text>
+      <text x="480.5" class="t-muted tree-sublabel" font-size="12" text-anchor="middle">
+        <tspan x="480.5" y="125.5">管理能力分别授权</tspan>
+      </text>
+    </g>
+    <g id="node-object" aria-label="聚焦对象权限，查看、新建、编辑、删除、导出, 叶子节点" aria-pressed="false" class="tree-hue-database">
+      <title>对象权限 · 查看、新建、编辑、删除、导出 · 叶子节点</title>
+      <rect x="373" y="189" width="215" height="77" rx="10" class="c-mask" />
+      <rect x="373" y="189" width="215" height="77" rx="10" class="c-external tree-leaf" stroke-width="1.2" />
+      <circle cx="373" cy="227.5" r="2.6" class="tree-socket" stroke-width="1.4" />
+      <text x="480.5" class="t-primary tree-label" font-size="14" font-weight="560" text-anchor="middle">
+        <tspan x="480.5" y="231.5">对象权限</tspan>
+      </text>
+      <text x="480.5" class="t-muted tree-sublabel" font-size="12" text-anchor="middle">
+        <tspan x="480.5" y="250.5">查看、新建、编辑、删除、导出</tspan>
+      </text>
+    </g>
+    <g id="node-field" aria-label="聚焦字段权限，查看、新建时写入、编辑, 叶子节点" aria-pressed="false" class="tree-hue-database">
+      <title>字段权限 · 查看、新建时写入、编辑 · 叶子节点</title>
+      <rect x="373" y="314" width="215" height="77" rx="10" class="c-mask" />
+      <rect x="373" y="314" width="215" height="77" rx="10" class="c-external tree-leaf" stroke-width="1.2" />
+      <circle cx="373" cy="352.5" r="2.6" class="tree-socket" stroke-width="1.4" />
+      <text x="480.5" class="t-primary tree-label" font-size="14" font-weight="560" text-anchor="middle">
+        <tspan x="480.5" y="356.5">字段权限</tspan>
+      </text>
+      <text x="480.5" class="t-muted tree-sublabel" font-size="12" text-anchor="middle">
+        <tspan x="480.5" y="375.5">查看、新建时写入、编辑</tspan>
+      </text>
+    </g>
+    <g id="node-api" aria-label="聚焦API、视图与接口执行，允许调用或使用指定入口, 叶子节点" aria-pressed="false" class="tree-hue-cloud">
+      <title>API、视图与接口执行 · 允许调用或使用指定入口 · 叶子节点</title>
+      <rect x="373" y="439" width="215" height="77" rx="10" class="c-mask" />
+      <rect x="373" y="439" width="215" height="77" rx="10" class="c-external tree-leaf" stroke-width="1.2" />
+      <circle cx="373" cy="477.5" r="2.6" class="tree-socket" stroke-width="1.4" />
+      <text x="480.5" class="t-primary tree-label" font-size="14" font-weight="560" text-anchor="middle">
+        <tspan x="480.5" y="481.5">API、视图与接口执行</tspan>
+      </text>
+      <text x="480.5" class="t-muted tree-sublabel" font-size="12" text-anchor="middle">
+        <tspan x="480.5" y="500.5">允许调用或使用指定入口</tspan>
+      </text>
+    </g>
+    <g id="node-custom" aria-label="聚焦自定义业务权限，业务代码检查后才起作用, 叶子节点" aria-pressed="false" class="tree-hue-cloud">
+      <title>自定义业务权限 · 业务代码检查后才起作用 · 叶子节点</title>
+      <rect x="373" y="564" width="215" height="77" rx="10" class="c-mask" />
+      <rect x="373" y="564" width="215" height="77" rx="10" class="c-external tree-leaf" stroke-width="1.2" />
+      <circle cx="373" cy="602.5" r="2.6" class="tree-socket" stroke-width="1.4" />
+      <text x="480.5" class="t-primary tree-label" font-size="14" font-weight="560" text-anchor="middle">
+        <tspan x="480.5" y="606.5">自定义业务权限</tspan>
+      </text>
+      <text x="480.5" class="t-muted tree-sublabel" font-size="12" text-anchor="middle">
+        <tspan x="480.5" y="625.5">业务代码检查后才起作用</tspan>
+      </text>
+    </g>
+  </g>
+  <text x="28" y="771.0" font-size="13" fill="#536b73">按控制对象分组。角色和权限集负责分配这些权限。</text>
+  <text x="28" y="797.0" font-size="13" fill="#536b73">记录范围另行决定可以操作哪几条记录。</text>
+</svg>
