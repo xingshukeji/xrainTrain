@@ -54,6 +54,7 @@ description: 按开发任务连接 skills-hub 的全部业务专题、AI 技能�
 | 原始资料 | 解决什么问题 |
 |---|---|
 | [业务实现与接入](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/workforce-business-development/references/implementation.md) | 业务服务、公共包、宿主页面、工具声明与处理器接线 |
+| [Workforce SDK](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/workforce-business-development/references/workforce-sdk.md) | 官方包取得方式、适用版本、公开导出、记录调用与执行上下文 |
 | [智能体使用条件](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/workforce-business-development/references/agent-access.md) | 定义、助手、使用资格、工具配置及实际业务权限 |
 
 ## 按问题选择完整技能

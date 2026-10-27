@@ -4,7 +4,7 @@ description: AI 在 XRain 与 Workforce 中开发业务功能、页面、工具�
 ---
 # 从需求到可验证结果
 
-从用户的业务目标进入所属项目。优先复用已确认的业务主线、模型和接入方式。完整方法见[业务开发技能](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/workforce-business-development/SKILL.md)。
+从用户的业务目标进入所属项目。优先复用已确认的业务主线、接口、模型和接入方式。建模不是每项开发的前置步骤。完整方法见[业务开发技能](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/workforce-business-development/SKILL.md)。
 
 ## 先取得足够的上下文
 
@@ -21,6 +21,14 @@ description: AI 在 XRain 与 Workforce 中开发业务功能、页面、工具�
 
 ## 把需求分成已有能力与实际增量
 
+先选择承载方式，再决定是否涉及模型：
+
+| 当前业务 | 本次开发主线 |
+|---|---|
+| 原系统已经管理数据、流程与权限 | [配置接口、按需编排并发布业务入口](/developers/integration)，无需先建业务对象 |
+| 需要独立管理新的业务事实 | 进入下方模型、数据与权限步骤 |
+| 原系统与新增业务并存 | 原接口直接复用，只对新增事实建模，并核对跨系统结果 |
+
 以“员工报修”为例，平台已经提供记录 ID、Owner、审计、历史、分页、授权与支持对象的软删除。新增内容通常是设备、故障描述、状态及业务时间。
 
 维修负责人只有在语义不同于 Owner 时才需要独立字段。提交人、代报修的申请人和维修负责人也可能是不同的人。先明确这些事实，再选择字段和权限。
@@ -28,6 +36,8 @@ description: AI 在 XRain 与 Workforce 中开发业务功能、页面、工具�
 对于每个动作，写清三项：平台已有实现是什么，需要怎样配置或接入，仍需编写哪段业务逻辑。具体字段与标准能力见[对象基础](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/workforce-business-development/references/object-foundation.md)。
 
 ## 模型、数据与权限一起落实
+
+**仅在需要新增或修改 XRain 业务模型时执行本节。** 纯接口转接直接进入[连接现有系统](#连接现有系统)。
 
 1. 查询现有对象和字段，保留稳定 ID 与 API 名。
 2. 根据字段类型、长度、精度、选项和关联要求修改模型。
@@ -43,7 +53,7 @@ description: AI 在 XRain 与 Workforce 中开发业务功能、页面、工具�
 
 页面和 AI 工具可以调用同一业务服务。服务负责确定计算、状态和保存结果；页面负责交互，AI 负责理解用户输入与解释结果。
 
-使用当前项目所安装版本的公开导出：
+SDK 的取得方式、版本与完整读取示例见[官方 SDK](/developers/sdk)。使用当前项目所安装版本的公开导出：
 
 | 导出 | 作用 |
 |---|---|
@@ -68,7 +78,9 @@ description: AI 在 XRain 与 Workforce 中开发业务功能、页面、工具�
 
 ## 连接现有系统
 
-ERP/CRM 已有查询和提交能力时，直接使用其受支持接口。先确认远端身份及数据范围，再设计输入输出映射。外部记录 ID 文本不自动成为平台 Lookup。
+ERP/CRM 管理完善且已有查询和提交能力时，使用连接器与请求转接其受支持接口。需要组合、转换或业务判断时，用业务编排调用已登记的 raw 接口，再发布为统一 HTTP 接口。这条路线无需创建 XRain 业务对象或复制原系统模型，详见[免建模的接入指南](/developers/integration)。
+
+先确认远端身份及数据范围，再设计输入输出映射。需要项目依赖的逻辑可以放在企业业务服务中，沿原系统 SDK/API 调用。外部记录 ID 文本不自动成为平台 Lookup。
 
 混合实现需要保存来源系统、租户和外部记录标识，并明确哪些字段由谁修改。远端成功、本地保存成功、消息发送成功分别报告；超时导致结果未知时，先按原系统提供的查询方式确认。
 

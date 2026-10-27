@@ -4,7 +4,7 @@ description: 面向 AI 的 XRain 与 Workforce 开发资料入口。按需求连
 ---
 # AI 开发入口
 
-本入口面向帮助企业进行二开和定制的 AI，也适用于企业开发者。产品与服务提供方为**苏州苏宏助为智能科技有限公司**，业务咨询：[510102105@qq.com](mailto:510102105@qq.com)。
+本入口面向帮助企业进行二开和定制的 AI，也适用于企业开发者。产品与服务提供方为**苏州苏宏助为智能科技有限公司**。[产品介绍](/products/)明确 XRain、Workforce 与开发工具的关系；[开发者文档](/developers/)提供 SDK、API 和示例；合作咨询见[联系我们](/contact)。
 
 **先理解要完成的业务动作，再选择平台能力和参考资料。** 本站课程、AI 指南和 skills-hub 公开可读；调用实际平台时，使用用户获准的环境、身份和工具。
 
@@ -30,7 +30,8 @@ description: 面向 AI 的 XRain 与 Workforce 开发资料入口。按需求连
 | 新增对象、字段、查询与权限 | [开发顺序](/ai/development) | [建模、数据和授权参考](/ai/reference#模型数据与权限) |
 | 第一次完成资源包和记录读写 | [完整便签案例](/ai/note-case) | 本站可下载源码、CLI 与 HTTP 说明 |
 | 新增业务页面或 AI 工具 | [页面与工具接入](/ai/development#页面与-ai-工具共用业务能力) | 公共包类型与[业务实现参考](/ai/reference#页面业务服务与-ai) |
-| 接入 ERP、CRM 或外部接口 | [连接现有系统](/ai/development#连接现有系统) | [集成参考](/ai/reference#自动化集成与公共服务) |
+| 接入 ERP、CRM 或外部接口 | [免建模的接口编排](/developers/integration) | [集成参考](/ai/reference#自动化集成与公共服务) |
+| 获取并使用官方 SDK | [SDK 入门](/developers/sdk) | [公开类型与方法](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/workforce-business-development/references/workforce-sdk.md) |
 | 403、字段不生效、工具执行失败 | [错误与当前环境](/ai/troubleshooting) | 相应访问诊断、应用操作或运行技能 |
 | 寻找全部专题和技能 | [开发资料目录](/ai/reference) | 逐项打开原始 Markdown |
 

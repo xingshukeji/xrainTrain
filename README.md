@@ -1,10 +1,12 @@
 # 苏宏助为 · 企业 AI 与 XRain 开发支持
 
-苏州苏宏助为智能科技有限公司的企业 AI 解决方案、人员课程与 AI 开发资料入口。以 XRain 与 Workforce 的公开能力支持二开、业务应用定制和系统集成。商务咨询：[510102105@qq.com](mailto:510102105@qq.com)。
+苏州苏宏助为智能科技有限公司的 XRain 与 Workforce 官方产品、企业 AI 解决方案和开发资料入口。支持免建模的已有系统接口接入、新业务建设、应用定制与人员学习。[联系我们](https://xingshukeji.github.io/xrainTrain/contact)。
 
-[解决方案与合作](https://xingshukeji.github.io/xrainTrain/solutions) · [人员学习](https://xingshukeji.github.io/xrainTrain/learn) · [AI 开发入口](https://xingshukeji.github.io/xrainTrain/ai/) · [公开技能](https://github.com/xingshukeji/skills-hub) · [AI 文本索引](https://xingshukeji.github.io/xrainTrain/llms.txt)
+[产品与技术](https://xingshukeji.github.io/xrainTrain/products/) · [开发者文档](https://xingshukeji.github.io/xrainTrain/developers/) · [官方 SDK](https://xingshukeji.github.io/xrainTrain/developers/sdk) · [人员学习](https://xingshukeji.github.io/xrainTrain/learn) · [AI 开发入口](https://xingshukeji.github.io/xrainTrain/ai/) · [官方技能](https://github.com/xingshukeji/skills-hub) · [AI 文本索引](https://xingshukeji.github.io/xrainTrain/llms.txt)
 
-人员课程包含 G0 与 B1—B7、五个专题、操作视频、SVG、判断题和浏览器学习记录。AI 资料按开发任务连接技能、21 份业务专题、接口、CLI、SDK 和完整便签案例。当前范围由[设计](internal/设计方案.md)与[覆盖地图](internal/能力与接口学习地图.md)持有。
+人员课程包含 G0 与 B1—B7、五个专题、操作视频、SVG、判断题和浏览器学习记录。产品页明确公司、产品与开发工具的关系；开发者文档包含 SDK 用法、免建模集成、技能选择及完整便签案例，并连接 skills-hub 的 22 份业务专题。当前范围由[设计](internal/设计方案.md)与[覆盖地图](internal/能力与接口学习地图.md)持有。
+
+本仓拥有对外产品介绍、联系页、开发教程、人员课程及其网站；skills-hub 拥有技能、CLI 和公开专题参考；SDK 接口、类型、源码与制品版本仍由 Workforce 和 Runtime 所属项目维护。SDK 通过项目制品渠道交付，公开文档不表示公共 npm 已发布。联系方式仅在 `course/contact.md` 维护，其他页面链接该页。
 
 ## 本地运行
 

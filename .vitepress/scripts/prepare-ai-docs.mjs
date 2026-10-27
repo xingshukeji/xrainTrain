@@ -66,17 +66,20 @@ export async function prepareAiDocs({ sourceDir, outputDir, siteUrl = publishedS
     docs.push({ path, title, content, url: new URL(`text/${path}`, siteUrl).href })
   }
   const list = selected => selected.map(doc => `- [${doc.title}](${doc.url})`).join('\n')
-  const introduction = '# 苏宏助为 · XRain 与 Workforce 开发资料\n\n' +
-    '> 苏州苏宏助为智能科技有限公司提供企业 AI 解决方案、应用定制与系统集成。业务咨询：510102105@qq.com。\n\n' +
-    '从业务需求选择资料，按任务读取。公开知识不授予平台权限；实际调用使用获准环境和身份。平台核心源码保持闭源。\n\n' +
+  const introduction = '# 苏宏助为 · XRain 与 Workforce 官方产品和开发资料\n\n' +
+    '> 苏州苏宏助为智能科技有限公司提供 XRain 业务应用平台、XRain Workforce 人与 AI 协作产品，以及企业 AI 解决方案、应用定制与系统集成。\n\n' +
+    'XRain 支持新业务建模，也支持对管理完善的已有系统直接通过业务编排转接接口，无需新增业务数据模型。Workforce 提供人与 AI 协作入口。SDK 是代码开发包，Skill 是 AI 任务方法，CLI 是终端工具。\n\n' +
+    '从业务需求选择资料，按任务读取。SDK 按项目制品渠道取得，不能假定公开 npm 可匿名安装。公开知识不授予平台权限；实际调用使用获准环境和身份。平台核心源码保持闭源。\n\n' +
     '本站 Markdown 保留正文、代码和教学组件的源数据，无需运行网页脚本；模拟和学习记录交互在网页使用。正式接口、类型和命令以来源及实际版本为准。\n\n' +
     `- [本站版本](${new URL('version.json', siteUrl).href})\n` +
     `- [本站 Markdown 全文](${new URL('llms-full.txt', siteUrl).href})：不内嵌完整 skills-hub；继续读取下方公开来源。\n` +
     '- [skills-hub 完整目录](https://github.com/xingshukeji/skills-hub/archive/refs/heads/main.zip)：按需取得完整技能目录，已安装副本需主动更新。\n'
-  const index = `${introduction}\n## AI 开发路线\n\n${list(docs.filter(doc => doc.path.startsWith('ai/')))}\n\n` +
-    `## 企业服务与人员学习\n\n${list(docs.filter(doc => ['index.md', 'solutions.md', 'learn.md'].includes(doc.path)))}\n\n` +
+  const corporatePaths = ['index.md', 'solutions.md', 'contact.md', 'learn.md']
+  const index = `${introduction}\n## 产品与官方开发文档\n\n${list(docs.filter(doc => /^(products|developers)\//.test(doc.path)))}\n\n` +
+    `## AI 开发路线\n\n${list(docs.filter(doc => doc.path.startsWith('ai/')))}\n\n` +
+    `## 企业服务、联系与人员学习\n\n${list(docs.filter(doc => corporatePaths.includes(doc.path)))}\n\n` +
     `## 公开 AI 技能\n\n${skills.map(([name, label]) => `- [${label}](${hub}${name}/SKILL.md)：${name}`).join('\n')}\n\n` +
-    `## 课程与接口参考\n\n${list(docs.filter(doc => !doc.path.startsWith('ai/') && !['index.md', 'solutions.md', 'learn.md'].includes(doc.path)))}\n`
+    `## 课程与接口参考\n\n${list(docs.filter(doc => !/^(ai|products|developers)\//.test(doc.path) && !corporatePaths.includes(doc.path)))}\n`
   await writeFile(join(outputDir, 'llms.txt'), index)
   await writeFile(join(outputDir, 'llms-full.txt'), introduction + '\n' + docs.map(doc => `\n---\n\n# 文档：${doc.title}\n\n网页：${webUrl(doc.path, siteUrl)}\n原始 Markdown：${doc.url}\n\n${doc.content}`).join('\n'))
   return docs.length

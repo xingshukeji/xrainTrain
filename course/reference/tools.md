@@ -78,6 +78,8 @@ CLI 提供 `app build`、`app import`、`app preview`、`app install` 和 operat
 
 ## SDK：用公开导出和类型 {#sdk-用公开导出和类型}
 
+首次使用先读[官方 SDK：取得、调用与工具接入](/developers/sdk)。它说明受控制品的取得方式、适用版本和完整读取示例；不要将包名当作公开 npm 下载承诺。
+
 在企业应用服务端，可以从 `@xrain/workforce-application/server` 使用已发布的 `XRainRuntimeClient`。先查看项目锁文件和该版本类型，按公开方法调用。
 
 | 导出路径 | 用途 |
