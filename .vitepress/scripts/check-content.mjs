@@ -15,8 +15,9 @@ async function walk(dir) {
 }
 async function exists(path) { try { await access(path); return true } catch { return false } }
 const files = await walk(course)
+const authored = files.filter(file => file.endsWith('.md') && !relative(course, file).replaceAll('\\', '/').startsWith('public/'))
 let links = 0
-for (const file of files.filter(f => f.endsWith('.md'))) {
+for (const file of authored) {
   const text = await readFile(file, 'utf8'), label = relative(root,file)
   if (text.includes('\uFFFD')) issues.push(`${label}: 损坏的字符`)
   if ((text.match(/^```/gm)||[]).length % 2) issues.push(`${label}: 代码围栏未闭合`)
@@ -52,4 +53,4 @@ const second = JSON.parse(await readFile(join(root,'examples/note/label-source.j
 if (first.records.filter(r=>r.kind==='BizObject').length!==1 || first.records.filter(r=>r.kind==='BizField').length!==1 || first.records.some(r=>r.kind==='RuntimeRecord')) issues.push('首课样例超出一对象、一字段、无预置记录的范围')
 if (first.packageId!==second.packageId || first.versionId===second.versionId || first.records.map(r=>r.id).join()!==second.records.map(r=>r.id).join()) issues.push('标签升级没有保留稳定身份或没有新版本身份')
 if(issues.length){console.error(issues.join('\n'));process.exitCode=1}
-else console.log(`课程检查通过：${files.filter(f=>f.endsWith('.md')).length} 篇正文、${lessons.length} 个基础单元、${links} 个本地引用。`)
+else console.log(`课程检查通过：${authored.length} 篇正文、${lessons.length} 个基础单元、${links} 个本地引用。`)

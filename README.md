@@ -1,8 +1,10 @@
-# XRain 学习课
+# 苏宏助为 · 企业 AI 与 XRain 开发支持
 
-从一个对象、一个文本字段、一条便签开始的独立低代码自学课程。包括 G0 与 B1—B7、按开发问题组织的能力地图、接口资料入口、五个按需专题、真实操作视频、SVG 图解、判断题和浏览器本地学习记录。
+苏州苏宏助为智能科技有限公司的企业 AI 解决方案、人员课程与 AI 开发资料入口。以 XRain 与 Workforce 的公开能力支持二开、业务应用定制和系统集成。商务咨询：[510102105@qq.com](mailto:510102105@qq.com)。
 
-[在线课程](https://xingshukeji.github.io/xrainTrain/) · [完整源码](https://github.com/xingshukeji/xrainTrain) · [课程设计](internal/设计方案.md) · [覆盖地图](internal/能力与接口学习地图.md)
+[解决方案与合作](https://xingshukeji.github.io/xrainTrain/solutions) · [人员学习](https://xingshukeji.github.io/xrainTrain/learn) · [AI 开发入口](https://xingshukeji.github.io/xrainTrain/ai/) · [公开技能](https://github.com/xingshukeji/skills-hub) · [AI 文本索引](https://xingshukeji.github.io/xrainTrain/llms.txt)
+
+人员课程包含 G0 与 B1—B7、五个专题、操作视频、SVG、判断题和浏览器学习记录。AI 资料按开发任务连接技能、21 份业务专题、接口、CLI、SDK 和完整便签案例。当前范围由[设计](internal/设计方案.md)与[覆盖地图](internal/能力与接口学习地图.md)持有。
 
 ## 本地运行
 
@@ -27,7 +29,7 @@ pnpm docs:build
 pnpm docs:preview
 ```
 
-`docs:check` 检查正文、引用、课程标题与导航、已明确淘汰的教学用语和最小样例。`test` 检查学习记录的恢复和隔离。构建先复制本仓 examples 到公开下载目录，再生成 `.vitepress/dist`，不读取业务配置。预览地址同上；本地开发与预览不要同时占用同一端口。
+`docs:check` 检查正文、引用、课程标题与导航、教学用语和最小样例。`test` 检查学习记录及 AI 文本导出行为。准备步骤复制本仓 examples，并从 course 正文生成 `text/`、`llms.txt` 和 `llms-full.txt`；构建生成 `.vitepress/dist`，不读取相邻仓库或业务配置。纯文本副本在准备步骤更新。预览地址同上；本地开发与预览不要同时占用同一端口。
 
 正文位于 `course/`，组件与站点配置位于 `.vitepress/`，可编辑 SVG 在 `course/public/diagrams/`；分步图的数据随所在课程正文维护。`examples/` 持有完整练习源码。`internal/` 不进入网站，但其已提交文件随公开仓库公开。
 
@@ -47,4 +49,4 @@ pnpm docs:preview
 
 真实练习从[环境准备与 CLI 初始化](course/help/environment.md)开始。2026-10-25 已逐课核对基础单元、独立专题数据、函数与 Trigger、只读集成、SDK 和 CLI 示例，并检查全部课程页面及交互。每项成功结果和仍缺环境条件的项目由[资料总索引与适用版本](course/reference/sources.md#适用范围与真实验证)持有；不能将页面或预览成功当作所有练习成功。
 
-网页学习不需要 skills-hub 或 Workforce 源码权限。上游深入资料可能需要组织访问权，课程明确标注；平台源码不包含在本课程中。
+本站与 skills-hub 公开可读。纯文本全文包含本站 Markdown 和上游链接；取得全部技能及资源使用 skills-hub 完整目录。Workforce 源码按原仓库权限访问，真实调用需要获准环境和身份。平台核心源码不包含在公开资料中。

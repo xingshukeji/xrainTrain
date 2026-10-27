@@ -3,6 +3,9 @@ node_modules/
 .vitepress/dist/
 course/public/downloads/
 course/public/version.json
+course/public/text/
+course/public/llms.txt
+course/public/llms-full.txt
 .local/
 *.local.json
 *.log

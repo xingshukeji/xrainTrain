@@ -13,7 +13,7 @@ title: CLI、SDK 与应用包
 
 ## CLI 命令与安装
 
-从[官方分发目录](https://github.com/xingshukeji/skills-hub/tree/main/skills/xrain-cli)取得完整 `xrain-cli/`。这个仓库需要组织权限，也可以由培训维护者提供完整副本。
+从[公开分发目录](https://github.com/xingshukeji/skills-hub/tree/main/skills/xrain-cli)取得完整 `xrain-cli/`，无需组织仓库权限。支持 Skill 的工具可按仓库说明安装；其他工具保留完整目录后直接运行。
 
 使用 Node.js 22.12 或以上。CLI 已包含依赖，运行时不需要 npm install 或 .NET。在包含 `xrain-cli/` 的目录执行：
 

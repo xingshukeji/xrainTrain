@@ -3,7 +3,7 @@ title: 资料总索引与适用版本
 ---
 # 资料总索引与适用版本
 
-这页供查来源和版本。基础课所需说明、请求和样例已包含在课程中；进一步阅读 skills-hub 或 Workforce 源码时，可能需要组织仓库权限。
+这页供查来源和版本。课程、AI 指南及 [skills-hub](https://github.com/xingshukeji/skills-hub) 公开可读。Workforce 项目源码按其仓库访问范围取得；没有源码权限时，可先使用[公开开发参考](/ai/reference)。实际平台练习需要获准环境和本人身份。
 
 ## 适用范围与真实验证
 

@@ -1,5 +1,7 @@
 import { copyFile, mkdir, writeFile } from 'node:fs/promises'
 import { execFileSync } from 'node:child_process'
+import { fileURLToPath } from 'node:url'
+import { prepareAiDocs } from './prepare-ai-docs.mjs'
 const root = new URL('../../', import.meta.url)
 const downloads = new URL('course/public/downloads/', root)
 await mkdir(downloads, { recursive: true })
@@ -20,3 +22,5 @@ if (commit === 'local-source') {
 }
 await writeFile(new URL('course/public/version.json', root), JSON.stringify({ commit }, null, 2) + '\n')
 console.log(`已准备 ${files.length} 个课程样例下载文件。`)
+const count = await prepareAiDocs({ sourceDir: fileURLToPath(new URL('course/', root)), outputDir: fileURLToPath(new URL('course/public/', root)) })
+console.log(`已准备 ${count} 篇公开 Markdown、AI 索引与全文。`)

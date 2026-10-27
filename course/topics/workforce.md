@@ -21,7 +21,9 @@ flow:
 
 这一页分两部分：先看**一段任务内容怎样从平台显示到页面**，再让 AI **读取你自己的任务**。
 
-第一部分需要源码阅读权限；第二部分需要可用的 Workforce 练习环境、模型和任务执行入口。可以分别完成。
+第一部分需要目标 Workforce 仓库的源码阅读权限；没有该权限时，可以先学习[公开的业务实现参考](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/workforce-business-development/references/implementation.md)。第二部分需要可用的 Workforce 练习环境、模型和任务执行入口。可以分别完成。
+
+如果你希望让 AI 根据业务需求进行二开，使用[AI 开发入口](/ai/)。本页继续讲字段追踪与 Task 操作练习。
 
 ## 追踪一个真实字段
 
