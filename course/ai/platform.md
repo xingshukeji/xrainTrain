@@ -16,7 +16,7 @@ description: 按业务需求选择 XRain、Workforce、智能体 Runtime 或已�
 
 平台核心源码保持闭源。业务开发使用交付说明、公开接口、公共包导出和项目自身代码。记录 API 中的 Runtime 数据访问与智能体 Runtime 的对话执行是不同用途。
 
-来源：[平台与业务的衔接](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/workforce-business-development/references/platform.md)。
+来源：[平台与业务的衔接](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/shzw-workforce-business-development/references/platform.md)。
 
 ## 从需求选择实现方式
 
@@ -45,4 +45,4 @@ description: 按业务需求选择 XRain、Workforce、智能体 Runtime 或已�
 | 工具或定义 | 当前定义、宿主接入、实际工具结果、同一业务记录 |
 | 外部接口 | 本地请求、远端结果及业务状态；区分失败与结果未知 |
 
-来源：[业务实现与接入](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/workforce-business-development/references/implementation.md)、[生命周期](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/workforce-business-development/references/lifecycle.md)。具体实施顺序见[从需求到可验证结果](/ai/development)。
+来源：[业务实现与接入](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/shzw-workforce-business-development/references/implementation.md)、[生命周期](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/shzw-workforce-business-development/references/lifecycle.md)。具体实施顺序见[从需求到可验证结果](/ai/development)。

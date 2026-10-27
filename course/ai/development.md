@@ -4,7 +4,7 @@ description: AI 在 XRain 与 Workforce 中开发业务功能、页面、工具�
 ---
 # 从需求到可验证结果
 
-从用户的业务目标进入所属项目。优先复用已确认的业务主线、接口、模型和接入方式。建模不是每项开发的前置步骤。完整方法见[业务开发技能](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/workforce-business-development/SKILL.md)。
+从用户的业务目标进入所属项目。优先复用已确认的业务主线、接口、模型和接入方式。建模不是每项开发的前置步骤。完整方法见[业务开发技能](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/shzw-workforce-business-development/SKILL.md)。
 
 ## 先取得足够的上下文
 
@@ -33,7 +33,7 @@ description: AI 在 XRain 与 Workforce 中开发业务功能、页面、工具�
 
 维修负责人只有在语义不同于 Owner 时才需要独立字段。提交人、代报修的申请人和维修负责人也可能是不同的人。先明确这些事实，再选择字段和权限。
 
-对于每个动作，写清三项：平台已有实现是什么，需要怎样配置或接入，仍需编写哪段业务逻辑。具体字段与标准能力见[对象基础](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/workforce-business-development/references/object-foundation.md)。
+对于每个动作，写清三项：平台已有实现是什么，需要怎样配置或接入，仍需编写哪段业务逻辑。具体字段与标准能力见[对象基础](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/shzw-workforce-business-development/references/object-foundation.md)。
 
 ## 模型、数据与权限一起落实
 
@@ -72,7 +72,7 @@ SDK 的取得方式、版本与完整读取示例见[官方 SDK](/developers/sdk
 4. 调用实际业务读取能力，返回真实内容与状态。
 5. 从实际 AI 入口调用工具，核对同一记录和执行结果。
 
-[业务实现参考](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/workforce-business-development/references/implementation.md)提供工具声明、`ServiceToolInvocation` 与处理器接线示例。示例接线不等于完整可部署应用，业务函数、在线定义和宿主装配仍需项目实现。
+[业务实现参考](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/shzw-workforce-business-development/references/implementation.md)提供工具声明、`ServiceToolInvocation` 与处理器接线示例。示例接线不等于完整可部署应用，业务函数、在线定义和宿主装配仍需项目实现。
 
 对于自定义页面，检查平台值到服务返回、再到页面属性的实际映射。平台字段 label 的变化是否显示在页面，取决于页面是否消费元数据；见[真实字段练习](/topics/workforce#追踪一个真实字段)。
 
@@ -84,7 +84,7 @@ ERP/CRM 管理完善且已有查询和提交能力时，使用连接器与请求
 
 混合实现需要保存来源系统、租户和外部记录标识，并明确哪些字段由谁修改。远端成功、本地保存成功、消息发送成功分别报告；超时导致结果未知时，先按原系统提供的查询方式确认。
 
-共享连接器凭据代表连接器主体，不能自动等同于当前用户的远端权限。具体规则与失败恢复见[系统集成](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/workforce-business-development/references/integration.md)。
+共享连接器凭据代表连接器主体，不能自动等同于当前用户的远端权限。具体规则与失败恢复见[系统集成](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/shzw-workforce-business-development/references/integration.md)。
 
 ## 根据改动验证结果
 

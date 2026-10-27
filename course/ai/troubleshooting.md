@@ -24,16 +24,16 @@ description: AI 开发时如何区分静态资料、当前平台能力、权限�
 
 | 现象 | 首先检查 | 进一步资料 |
 |---|---|---|
-| 401 或登录回跳失败 | 正常登录方式、已有身份与会话 | [认证技能](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/xrain-auth/SKILL.md) |
-| 登录后 403 | 应用准入、接口/对象动作、字段与记录范围、实际执行者 | [访问诊断](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/xrain-access-diagnosis/SKILL.md) |
-| 管理员成功，普通用户失败 | 用原用户定位缺少的条件及其他授权来源 | [业务授权](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/workforce-business-development/references/authorization.md) |
-| 字段改了，页面没变 | 安装版本、describe，以及页面的实际字段映射 | [元数据与前端](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/workforce-business-development/references/metadata-and-ui.md) |
+| 401 或登录回跳失败 | 正常登录方式、已有身份与会话 | [认证技能](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/shzw-xrain-auth/SKILL.md) |
+| 登录后 403 | 应用准入、接口/对象动作、字段与记录范围、实际执行者 | [访问诊断](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/shzw-xrain-access-diagnosis/SKILL.md) |
+| 管理员成功，普通用户失败 | 用原用户定位缺少的条件及其他授权来源 | [业务授权](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/shzw-workforce-business-development/references/authorization.md) |
+| 字段改了，页面没变 | 安装版本、describe，以及页面的实际字段映射 | [元数据与前端](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/shzw-workforce-business-development/references/metadata-and-ui.md) |
 | 保存遇到并发冲突 | 保留用户输入，重新读取旧值与差异 | [HTTP 条件更新](/reference/http#条件更新) |
-| 安装等待、中断或版本不一致 | 查询原 operation/installation，核对冲突和确认项 | [应用操作](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/xrain-app-operations/SKILL.md) |
-| AI 声称完成，但记录没变 | 本轮是否实际调用工具、工具结果与同一业务记录 | [智能体排障](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/workforce-agent-troubleshoot/SKILL.md) |
-| 工具存在但不能调用 | 定义、处理器、使用条件和执行者权限分别检查 | [智能体接入](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/workforce-business-development/references/agent-access.md) |
-| Routine 只预览没有运行 | 执行成员、模型/动作和真实运行结果 | [自动化](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/workforce-business-development/references/automation.md) |
-| 外部调用超时 | 确认远端结果是否已发生，再决定继续方式 | [系统集成](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/workforce-business-development/references/integration.md) |
+| 安装等待、中断或版本不一致 | 查询原 operation/installation，核对冲突和确认项 | [应用操作](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/shzw-xrain-app-operations/SKILL.md) |
+| AI 声称完成，但记录没变 | 本轮是否实际调用工具、工具结果与同一业务记录 | [智能体排障](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/shzw-workforce-agent-troubleshoot/SKILL.md) |
+| 工具存在但不能调用 | 定义、处理器、使用条件和执行者权限分别检查 | [智能体接入](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/shzw-workforce-business-development/references/agent-access.md) |
+| Routine 只预览没有运行 | 执行成员、模型/动作和真实运行结果 | [自动化](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/shzw-workforce-business-development/references/automation.md) |
+| 外部调用超时 | 确认远端结果是否已发生，再决定继续方式 | [系统集成](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/shzw-workforce-business-development/references/integration.md) |
 
 ## HTTP、CLI 与 SDK 分别读取
 

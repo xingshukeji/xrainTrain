@@ -62,13 +62,13 @@ finally { Remove-Item Env:XRAIN_BASE_URL, Env:XRAIN_TOKEN, Env:XRAIN_NOTE_ID -Er
 
 预期看到同一条记录的 JSON。SDK 的 `get()` 返回记录本身，不使用 CLI 的 `{ok,data}` 外层。令牌保持在进程环境中，不写入样例、源码或输出。
 
-常用方法包括 `describeBusinessObject(entityCode)`、`get(entityCode, recordId)`、`query(entityCode, query)` 和 `create(entityCode, values)`。写入方法会改变数据，使用前核对对应权限和输入。详细说明见[SDK 专题参考](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/workforce-business-development/references/workforce-sdk.md)。
+常用方法包括 `describeBusinessObject(entityCode)`、`get(entityCode, recordId)`、`query(entityCode, query)` 和 `create(entityCode, values)`。写入方法会改变数据，使用前核对对应权限和输入。详细说明见[SDK 专题参考](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/shzw-workforce-business-development/references/workforce-sdk.md)。
 
 ## 接入 AI 业务工具
 
 宿主已经取得可信执行上下文时，使用 `XRainRuntimeClient.fromExecution(call.execution, { signal: call.signal })`；工具参数只接受业务输入，不能接受用户传入的令牌或任意执行主体。
 
-[官方接线示例](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/workforce-business-development/references/implementation.md)展示 `ServiceToolInvoker` 与业务函数的连接。还需要工具声明、宿主装入、当前定义和实际权限同时生效。
+[官方接线示例](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/shzw-workforce-business-development/references/implementation.md)展示 `ServiceToolInvoker` 与业务函数的连接。还需要工具声明、宿主装入、当前定义和实际权限同时生效。
 
 如果业务完全来自原系统，可让工具调用[编排发布的接口](/developers/integration)或企业服务；不必为了使用 AI 工具而创建 XRain 业务对象。
 

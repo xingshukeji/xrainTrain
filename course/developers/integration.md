@@ -51,7 +51,7 @@ function execute(ctx) {
 
 输出包含 `source`、原订单编号和远端实际返回的 `quote`。这个编排没有读取或写入 XRain 业务记录。`ctx.sdk` 是平台在编排运行时提供的对象，不是要从 npm 安装的 SDK。
 
-已有编排可通过 `POST /api/integration/v1/http-interfaces/from-orchestration/{orchestrationId}` 发布；随后使用目录返回的 `invokePath` 调用。参数和响应细节以[官方集成参考](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/workforce-business-development/references/integration.md)为准。
+已有编排可通过 `POST /api/integration/v1/http-interfaces/from-orchestration/{orchestrationId}` 发布；随后使用目录返回的 `invokePath` 调用。参数和响应细节以[官方集成参考](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/shzw-workforce-business-development/references/integration.md)为准。
 
 ## 让页面和 AI 调用同一个业务动作
 
@@ -63,4 +63,4 @@ function execute(ctx) {
 
 读操作检查实际返回、字段映射、空结果和无权限结果。写操作除成功路径外，还需确定超时后如何查询原结果，避免重复提交。远端 HTTP 不参与 XRain 记录事务；混合场景分别记录各系统的成功与失败。
 
-此页说明现有接入能力和教学调用方式，不代表已为你的 ERP 完成配置或联调。完整资源参数、执行权限和恢复规则见[集成参考](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/workforce-business-development/references/integration.md)；准备建设新业务时再进入[建模案例](/ai/note-case)。
+此页说明现有接入能力和教学调用方式，不代表已为你的 ERP 完成配置或联调。完整资源参数、执行权限和恢复规则见[集成参考](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/shzw-workforce-business-development/references/integration.md)；准备建设新业务时再进入[建模案例](/ai/note-case)。

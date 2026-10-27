@@ -37,7 +37,7 @@ description: 使用已公开的完整资源包源码，贯通对象、字段、�
 
 顺序是：**源码构建 → 导入原包 → 在租户预检 → 提交安装 → 查询原操作 → 核对安装与字段**。构建成功只证明生成了包，导入成功只证明包进入目录。
 
-预检需要当前 revision 与视图 owner 绑定。已有安装时核对原状态，不重复初装。安装等待或中断后继续查询原 requestId/operationId；具体请求和恢复入口由[应用包说明](/reference/tools#构建导入与安装)与[应用操作技能](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/xrain-app-operations/SKILL.md)持有。
+预检需要当前 revision 与视图 owner 绑定。已有安装时核对原状态，不重复初装。安装等待或中断后继续查询原 requestId/operationId；具体请求和恢复入口由[应用包说明](/reference/tools#构建导入与安装)与[应用操作技能](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/shzw-xrain-app-operations/SKILL.md)持有。
 
 ## 检查当前身份与字段
 
