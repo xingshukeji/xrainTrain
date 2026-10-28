@@ -13,12 +13,12 @@ title: CLI、SDK 与应用包
 
 ## CLI 命令与安装
 
-从[公开分发目录](https://github.com/xingshukeji/skills-hub/tree/main/skills/shzw-xrain-cli)取得完整 `xrain-cli/`，无需组织仓库权限。支持 Skill 的工具可按仓库说明安装；其他工具保留完整目录后直接运行。
+从[公开分发目录](https://github.com/xingshukeji/skills-hub/tree/main/skills/shzw-xrain-cli)取得完整 `shzw-xrain-cli/`，无需组织仓库权限。支持 Skill 的工具可按仓库说明安装；其他工具保留完整目录后直接运行。
 
-使用 Node.js 22.12 或以上。CLI 已包含依赖，运行时不需要 npm install 或 .NET。在包含 `xrain-cli/` 的目录执行：
+使用 Node.js 22.12 或以上。CLI 已包含依赖，运行时不需要 npm install 或 .NET。在包含 `shzw-xrain-cli/` 的目录执行：
 
 ```powershell
-$cli = (Resolve-Path './xrain-cli/scripts/xrain-cli.mjs').Path
+$cli = (Resolve-Path './shzw-xrain-cli/scripts/xrain-cli.mjs').Path
 node $cli --help
 node $cli profile list
 ```

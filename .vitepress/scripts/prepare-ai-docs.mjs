@@ -4,15 +4,12 @@ import { dirname, join, relative } from 'node:path'
 const publishedSite = 'https://xingshukeji.github.io/xrainTrain/'
 const hub = 'https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/'
 const skills = [
-  ['workforce-business-development', '业务开发'],
-  ['xrain-cli', '平台 CLI'],
-  ['xrain-auth', '认证与登录'],
-  ['xrain-access-diagnosis', '访问诊断'],
-  ['xrain-business-user-lifecycle', '业务人员接入与协作'],
-  ['xrain-app-operations', '应用安装与恢复'],
-  ['workforce-runtime', '应用运行与恢复'],
-  ['workforce-agent-troubleshoot', '智能体排错'],
-  ['cicd', '已有流水线操作']
+  ['shzw-workforce-business-development', '业务开发'],
+  ['shzw-xrain-cli', '平台 CLI'],
+  ['shzw-xrain-access', '登录、访问与人员接入'],
+  ['shzw-xrain-app-package', '应用包编写与安装'],
+  ['shzw-runtime-operations', '应用运行与智能体排障'],
+  ['shzw-delivery', '已有流水线与交付']
 ]
 
 async function markdownFiles(directory) {

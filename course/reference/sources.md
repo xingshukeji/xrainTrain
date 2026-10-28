@@ -82,17 +82,16 @@ Task 读取结果适用于已验证的 Workforce 本机应用构建，Runtime �
 
 ## 技能入口
 
-| 原入口 | 何时需要 |
+按当前任务选用的技能和安装方法见[官方 AI 技能](/developers/skills)。以下入口使用 skills-hub 默认分支；上方专题链接仍保留课程使用的历史来源版本。
+
+| 技能 | 何时需要 |
 |---|---|
-| [业务开发](https://github.com/xingshukeji/skills-hub/blob/f6e10f6385cd4bae937c632a81839c9cc4e86f1a/skills/workforce-business-development/SKILL.md) | 从业务目标选择模型、接口、页面与工具 |
-| [XRain CLI](https://github.com/xingshukeji/skills-hub/blob/f4c48613557394cb42e37ec5b93d4f3303f93299/skills/xrain-cli/SKILL.md) | 命令行登录、元数据、数据、课程初始化和应用包 |
-| [认证](https://github.com/xingshukeji/skills-hub/blob/f6e10f6385cd4bae937c632a81839c9cc4e86f1a/skills/xrain-auth/SKILL.md) | 固定身份与正常登录恢复 |
-| [访问诊断](https://github.com/xingshukeji/skills-hub/blob/f6e10f6385cd4bae937c632a81839c9cc4e86f1a/skills/xrain-access-diagnosis/SKILL.md) | 登录后的 403、准入与数据范围 |
-| [人员生命周期](https://github.com/xingshukeji/skills-hub/blob/f6e10f6385cd4bae937c632a81839c9cc4e86f1a/skills/xrain-business-user-lifecycle/SKILL.md) | 人员接入、协作与职责变化 |
-| [应用操作](https://github.com/xingshukeji/skills-hub/blob/f6e10f6385cd4bae937c632a81839c9cc4e86f1a/skills/xrain-app-operations/SKILL.md) | 安装、升级、冲突与恢复 |
-| [运行维护](https://github.com/xingshukeji/skills-hub/blob/f6e10f6385cd4bae937c632a81839c9cc4e86f1a/skills/workforce-runtime/SKILL.md) | 启动、恢复及核对运行效果 |
-| [智能体排障](https://github.com/xingshukeji/skills-hub/blob/f6e10f6385cd4bae937c632a81839c9cc4e86f1a/skills/workforce-agent-troubleshoot/SKILL.md) | 不回复、重复消息、工具与会话问题 |
-| [已有流水线](https://github.com/xingshukeji/skills-hub/blob/f6e10f6385cd4bae937c632a81839c9cc4e86f1a/skills/cicd/SKILL.md) | 按项目既有入口执行构建与交付 |
+| [业务开发](https://github.com/xingshukeji/skills-hub/blob/main/skills/shzw-workforce-business-development/SKILL.md) | 从业务目标选择模型、接口、页面与工具 |
+| [XRain CLI](https://github.com/xingshukeji/skills-hub/blob/main/skills/shzw-xrain-cli/SKILL.md) | 命令行登录、元数据、数据和应用包 |
+| [人员与访问](https://github.com/xingshukeji/skills-hub/blob/main/skills/shzw-xrain-access/SKILL.md) | 登录恢复、访问诊断与人员接入 |
+| [应用包](https://github.com/xingshukeji/skills-hub/blob/main/skills/shzw-xrain-app-package/SKILL.md) | 编写、安装、升级与恢复 |
+| [运行排障](https://github.com/xingshukeji/skills-hub/blob/main/skills/shzw-runtime-operations/SKILL.md) | 启动、恢复和智能体故障定位 |
+| [流水线与交付](https://github.com/xingshukeji/skills-hub/blob/main/skills/shzw-delivery/SKILL.md) | 按项目既有入口执行构建与交付 |
 
 ## CLI、样例与接口发现
 

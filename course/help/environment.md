@@ -76,7 +76,7 @@ $context | Select-Object tenantId, userId, scope
 $base = (Read-Host '输入获准测试平台的服务地址').TrimEnd('/')
 $tenantId = Read-Host '输入要维护的租户 ID'
 $learnerUserId = Read-Host '输入已核对的原全局用户 ID'
-$cli = (Resolve-Path './xrain-cli/scripts/xrain-cli.mjs').Path
+$cli = (Resolve-Path './shzw-xrain-cli/scripts/xrain-cli.mjs').Path
 $hostAccount = Get-Credential -Message '输入已有且获准的 Host 维护账号'
 $hostBody = @{ userName = $hostAccount.UserName; password = $hostAccount.GetNetworkCredential().Password; scope = 'host' } | ConvertTo-Json
 $hostSession = Invoke-RestMethod -Uri "$base/api/service/authen/v1/account/login" -Method Post -ContentType 'application/json; charset=utf-8' -Body $hostBody
@@ -92,10 +92,10 @@ Remove-Item Env:XRAIN_TOKEN -ErrorAction SilentlyContinue
 
 ### 准备教学权限集
 
-在单独终端用原生维护账号完成本页登录，确认租户正确。当前目录需要包含从[正式分发目录](/reference/tools#cli-命令与安装)取得的完整 `xrain-cli/`。
+在单独终端用原生维护账号完成本页登录，确认租户正确。当前目录需要包含从[正式分发目录](/reference/tools#cli-命令与安装)取得的完整 `shzw-xrain-cli/`。
 
 ```powershell
-$cli = (Resolve-Path './xrain-cli/scripts/xrain-cli.mjs').Path
+$cli = (Resolve-Path './shzw-xrain-cli/scripts/xrain-cli.mjs').Path
 $tenantId = $context.tenantId
 $env:XRAIN_TOKEN = $headers.Authorization.Substring(7)
 node $cli profile set --server $base --tenant $tenantId --profile learn

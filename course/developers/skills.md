@@ -12,15 +12,12 @@ Skill 告诉 AI 如何完成一类任务，包含说明、参考和可能需要�
 
 | 任务 | 技能 | 关联产品或服务 |
 |---|---|---|
-| 建设新业务、接入老系统、开发页面和工具 | `workforce-business-development` | XRain、Workforce |
-| 查询或管理平台数据、权限、应用包 | `xrain-cli` | XRain |
-| 准备登录与修复认证接入 | `xrain-auth` | XRain 统一认证 |
-| 定位登录后的 403 和数据范围问题 | `xrain-access-diagnosis` | XRain、Workforce |
-| 完成人员接入、协作与职责变化 | `xrain-business-user-lifecycle` | XRain、Workforce |
-| 安装、升级、恢复或卸载应用 | `xrain-app-operations` | XRain 应用包 |
-| 启动、恢复与核对应用运行 | `workforce-runtime` | Workforce |
-| 排查 AI 不回复、工具失败或会话异常 | `workforce-agent-troubleshoot` | Workforce、Agent Runtime |
-| 使用已有 Jenkins 流水线 | `cicd` | 项目的交付服务 |
+| 建设新业务、接入老系统、开发页面和工具 | `shzw-workforce-business-development` | XRain、Workforce |
+| 查询或管理平台数据、权限、应用包 | `shzw-xrain-cli` | XRain |
+| 登录接入、访问诊断与人员协作 | `shzw-xrain-access` | XRain、Workforce |
+| 编写、安装、升级或恢复应用包 | `shzw-xrain-app-package` | XRain 应用包 |
+| 启动、恢复应用或排查智能体故障 | `shzw-runtime-operations` | Workforce、Agent Runtime |
+| 使用已有 Jenkins 流水线和交付入口 | `shzw-delivery` | 项目的交付服务 |
 
 完整清单、安装方法与每项 `SKILL.md` 见[仓库说明](https://github.com/xingshukeji/skills-hub#skills)。业务开发技能同时支持**免建模的接口编排、新业务建模和混合接入**。
 

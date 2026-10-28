@@ -36,7 +36,14 @@ test('publication exports all authored documents without copying public assets o
     assert.ok((await readFile(join(outputDir, 'text/ai/index.md'), 'utf8')).includes('https://xingshukeji.github.io/xrainTrain/help'))
     const index = await readFile(join(outputDir, 'llms.txt'), 'utf8')
     assert.ok(index.includes('text/ai/index.md'))
-    assert.ok(index.includes('skills/workforce-business-development/SKILL.md'))
+    const expectedSkills = [
+      'shzw-workforce-business-development', 'shzw-xrain-cli', 'shzw-xrain-access',
+      'shzw-xrain-app-package', 'shzw-runtime-operations', 'shzw-delivery'
+    ]
+    const publishedSkills = Array.from(index.matchAll(/skills\/([^/)\s]+)\/SKILL\.md/g), match => match[1])
+    assert.deepEqual(publishedSkills.sort(), [...expectedSkills].sort())
+    const skillPage = await readFile(new URL('../course/developers/skills.md', import.meta.url), 'utf8')
+    for (const skill of expectedSkills) assert.ok(skillPage.includes('`' + skill + '`'))
     const full = await readFile(join(outputDir, 'llms-full.txt'), 'utf8')
     assert.ok(full.includes('Use the real result.'))
     assert.ok(!full.includes('Do not copy'))
