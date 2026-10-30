@@ -26,6 +26,7 @@ description: 面向 AI 的 XRain 与 Workforce 开发资料入口。按需求连
 
 | 当前任务 | 先读 | 然后使用 |
 |---|---|---|
+| 了解 Workforce 功能和使用边界 | [Workforce 功能总览](/products/workforce) | 按场景继续读取沟通与交办、助手与业务、应用与工作空间；核对各页标明的当前差距 |
 | 不清楚需求应放在哪个系统 | [平台能力与扩展选择](/ai/platform) | [业务开发技能](https://raw.githubusercontent.com/xingshukeji/skills-hub/main/skills/shzw-workforce-business-development/SKILL.md) |
 | 新增对象、字段、查询与权限 | [开发顺序](/ai/development) | [建模、数据和授权参考](/ai/reference#模型数据与权限) |
 | 第一次完成资源包和记录读写 | [完整便签案例](/ai/note-case) | 本站可下载源码、CLI 与 HTTP 说明 |

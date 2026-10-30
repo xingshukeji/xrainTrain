@@ -54,7 +54,11 @@ export default defineConfig({
     sidebar: {
       '/products/': [{ text: '产品与技术', items: [
         { text: '产品总览', link: '/products/' }, { text: 'XRain 业务应用平台', link: '/products/xrain' },
-        { text: 'XRain Workforce', link: '/products/workforce' }, { text: '开发者文档', link: '/developers/' }, { text: '联系我们', link: '/contact' }
+        { text: '认识 Workforce', link: '/products/workforce' },
+        { text: '沟通、交办与定时工作', link: '/products/workforce-collaboration' },
+        { text: '助手、业务资料与顾客接待', link: '/products/workforce-assistants' },
+        { text: '应用、邮箱与工作空间', link: '/products/workforce-apps' },
+        { text: '开发者文档', link: '/developers/' }, { text: '联系我们', link: '/contact' }
       ] }],
       '/developers/': [{ text: '开始开发', items: [
         { text: '开发者文档', link: '/developers/' }, { text: '连接已有系统，无需重新建模', link: '/developers/integration' },
